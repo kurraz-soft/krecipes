@@ -1,10 +1,10 @@
-Basic react app template
+##KShoppingList
+*JS serverless app (server sync is optional)*
 
-Contains:
-* webpack
-* babel
-* react
-* sass
-* webpack-dev-server
+About
+-----
+Shopping/Recipe list with price accounting
 
+Commands
+-----
 ``npm start`` - run dev server
