@@ -41,6 +41,7 @@ export default function (state = {
                 {
                     name: action.name,
                     id: action.id,
+                    products: [],
                 }
             ];
 

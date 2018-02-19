@@ -14,13 +14,6 @@ class Layout extends Component
     {
         super(props);
 
-        if(typeof localStorage.items === 'undefined')
-        {
-            localStorage.items = {};
-        }
-
-        this.itemVariants = Object.keys(localStorage.items);
-
         props.dispatch(loadLocalData());
     }
 
@@ -39,13 +32,10 @@ class Layout extends Component
                         <Route exact path='/'>
                             <RecipesListPage createRecipe={this.createRecipe.bind(this)}/>
                         </Route>
-                        {/*<Route exact path='/add'>
-                            <InputNamePage backUrl='/' callback={this.createRecipe.bind(this)}/>
-                        </Route>*/}
                         <Route path='/editRecipe/:id' render={(props) => (
                             <EditRecipePage {...props} />
                         )} />
-                        {/*<Route exact path='/addItem'>
+                        {/*<Route exact path='/addProduct/:recipe_id'>
                             <InputNamePage backUrl='/' callback={} variants={this.itemVariants} />
                         </Route>*/}
                     </Switch>
