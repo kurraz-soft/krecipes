@@ -41,6 +41,46 @@ export default function (state = {
                 products: products,
             };
         }
+        case 'SAVE_RECIPE_PRODUCTS':
+        {
+            let products = state.products.map((state_product) => {
+                const act_product = action.products.find((action_product) => {
+                    return state_product.name === action_product.name
+                });
+
+                if(act_product)
+                {
+                    return {
+                        ...act_product,
+                        price: act_product.price,
+                    };
+                }else
+                    return state_product;
+            });
+
+            const new_products = action.products.filter((action_product) => {
+                return state.products.findIndex(state_product => {
+                    return state_product.name === action_product.name;
+                }) === -1;
+            });
+
+            new_products.forEach((product) => {
+                products = [
+                    ...products,
+                    {
+                        name: product.name,
+                        price: product.price,
+                    }
+                ];
+            });
+
+            saveProducts(products);
+
+            return {
+                ...state,
+                products: products,
+            };
+        }
         default:
             return state;
     }

@@ -7,12 +7,8 @@ export default class ProductEdit extends React.Component
     constructor(props)
     {
         super(props);
-        this.state = {
-            id: this.props.product.id,
-            name: this.props.product.name,
-            quantity: this.props.product.quantity,
-            price: this.props.product.price,
-        };
+
+        this.state = {...this.props.product};
     }
 
     handleDelete(e)
@@ -23,12 +19,23 @@ export default class ProductEdit extends React.Component
 
     handleChangeQuantity(e)
     {
-        this.setState({quantity: e.target.value});
+        this.setState({quantity: e.target.value}, () => {
+            this.props.onInputChange(this.state);
+        });
     }
 
     handleChangePrice(e)
     {
-        this.setState({price: e.target.value});
+        this.setState({price: e.target.value},() => {
+            this.props.onInputChange(this.state);
+        });
+    }
+
+    handleChangeName(value)
+    {
+        this.setState({name: value},() => {
+            this.props.onInputChange(this.state);
+        })
     }
 
     render()
@@ -36,7 +43,7 @@ export default class ProductEdit extends React.Component
         return (
             <div className="row">
                 <div className="col s8">
-                    <EditableText text={this.state.name} />
+                    <EditableText text={this.state.name} onChange={this.handleChangeName} />
                 </div>
                 <div className="col s1">
                     <input type="number" value={this.state.quantity} className="right-align" onChange={this.handleChangeQuantity.bind(this)}/>
@@ -57,5 +64,12 @@ export default class ProductEdit extends React.Component
 
 ProductEdit.propTypes = {
     product: PropTypes.object,
+    onDelete: PropTypes.func,
+    onInputChange: PropTypes.func,
+};
+
+PropTypes.defaultProps = {
+    product: {},
     onDelete: (id) => {},
+    onInputChange: (product) => {}
 };

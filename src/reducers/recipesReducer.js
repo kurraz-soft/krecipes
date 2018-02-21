@@ -115,6 +115,56 @@ export default function (state = {
                 //timestamp: + new Date(),
             };
         }
+        case 'SAVE_RECIPE_PRODUCTS':
+        {
+            const recipes = state.recipes.map((recipe) => {
+                if(recipe.id === action.id)
+                {
+                    return {
+                        ...recipe,
+                        products: action.products,
+                    };
+                }else
+                    return recipe;
+            });
+
+            saveRecipes(recipes);
+
+            return {
+                ...state,
+                recipes: recipes,
+            };
+        }
+        case 'SET_DEFAULT_PRODUCT_PRICE':
+        {
+            /**
+             * action = {name, recipe_id, price}
+             */
+            const recipes = state.recipes.map(recipe => {
+                if(recipe.id === action.recipe_id)
+                {
+                    const products = recipe.products.map(product => {
+                        if(product.name === action.name)
+                        {
+                            return {
+                                ...product,
+                                price: action.price,
+                            };
+                        }else
+                            return product;
+                    });
+                    return {
+                        ...recipe,
+                        products: products,
+                    };
+                }else
+                    return recipe;
+            });
+            return {
+                ...state,
+               recipes: recipes,
+            };
+        }
         default:
             return state;
     }

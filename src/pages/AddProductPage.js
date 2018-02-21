@@ -2,6 +2,7 @@ import React from 'react';
 import InputName from "../components/InputName";
 import { connect } from 'react-redux'
 import {createProduct} from "../actions/productActions";
+import {setDefaultProductPrice} from "../actions/recipeActions";
 
 @connect(store => {
     return {
@@ -25,6 +26,13 @@ export default class AddProductPage extends React.Component
     onSubmit(value)
     {
         this.props.dispatch(createProduct(this.recipe_id,value));
+        const product_from_lib = this.props.products.find((item) => {
+            return item.name === value;
+        });
+        if(product_from_lib)
+        {
+            this.props.dispatch(setDefaultProductPrice(value,this.recipe_id,product_from_lib.price));
+        }
         this.props.history.push('/editRecipe/' + this.recipe_id);
     }
 

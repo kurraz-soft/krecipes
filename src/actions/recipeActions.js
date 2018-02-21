@@ -27,3 +27,28 @@ export function loadLocalData(history) {
         history: history,
     }
 }
+
+export function saveRecipeProducts(id, products) {
+    return {
+        type: 'SAVE_RECIPE_PRODUCTS',
+        id: id,
+        products: products,
+    }
+}
+
+/**
+ * Sets price to recipes product collection
+ *
+ * @param name
+ * @param recipe_id
+ * @param price
+ * @returns {{type: string, id: *, recipe_id: *, price: *}}
+ */
+export function setDefaultProductPrice(name, recipe_id, price) {
+    return {
+        type: 'SET_DEFAULT_PRODUCT_PRICE',
+        name: name,
+        recipe_id: recipe_id,
+        price: price,
+    }
+}
