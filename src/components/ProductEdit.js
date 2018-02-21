@@ -42,16 +42,16 @@ export default class ProductEdit extends React.Component
     {
         return (
             <div className="row">
-                <div className="col s8">
+                <div className="col s5">
                     <EditableText text={this.state.name} onChange={this.handleChangeName} />
                 </div>
-                <div className="col s1">
+                <div className="col s2">
                     <input type="number" value={this.state.quantity} className="right-align" onChange={this.handleChangeQuantity.bind(this)}/>
                 </div>
-                <div className="col s1">
+                <div className="col s2">
                     <input type="number" value={this.state.price} className="right-align" onChange={this.handleChangePrice.bind(this)}/>
                 </div>
-                <div className="col s1">
+                <div className="col s2">
                     <input type="text" value={this.state.price * this.state.quantity} readOnly className="right-align"/>
                 </div>
                 <div className="col s1">

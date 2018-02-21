@@ -52,3 +52,12 @@ export function setDefaultProductPrice(name, recipe_id, price) {
         price: price,
     }
 }
+
+export function setRecipeProductActivity(recipe_id, product_id,is_active) {
+    return {
+        type: 'SET_RECIPE_PRODUCT_ACTIVITY',
+        recipe_id: recipe_id,
+        product_id: product_id,
+        is_active: is_active,
+    }
+}

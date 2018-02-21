@@ -3,15 +3,35 @@ import PropTypes from 'prop-types'
 
 export default class Product extends React.Component
 {
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            is_active: props.product.is_active,
+        };
+    }
+
+    handleToggleActive()
+    {
+        this.setState({is_active: !this.state.is_active},() => {
+            this.props.onToggleActive(this.props.product.id, this.state.is_active);
+        });
+    }
+
     render()
     {
         return (
-            <div className="row">
-                <div className="col s8">{this.props.product.name}</div>
-                <div className="col s1 right-align">{this.props.product.quantity}</div>
-                <div className="col s1 right-align">{this.props.product.price}</div>
-                <div className="col s1 right-align">{this.props.product.price * this.props.product.quantity}</div>
-                <div className="col s1" />
+            <div
+                className={'row hoverable card-panel ' + (this.state.is_active?'':'teal lighten-2 cross-out')}
+                onClick={this.handleToggleActive.bind(this)}
+            >
+                <div className="col s5" style={{textDecoration: 'inherit', lineHeight: '30px', fontSize: 'large'}}>{this.props.product.name}</div>
+                <div className="col s2 right-align">{this.props.product.quantity}</div>
+                <div className="col s2 right-align">{Number.parseFloat(this.props.product.price).toFixed(2)}</div>
+                <div className="col s2 right-align">{(this.props.product.price * this.props.product.quantity).toFixed(2)}</div>
+                <div className="col s1">
+                    <i className='material-icons green-text text-darken-3' style={{fontWeight: 'bold'}}>{this.state.is_active?'':'check'}</i>
+                </div>
             </div>
         );
     }
@@ -19,4 +39,5 @@ export default class Product extends React.Component
 
 Product.propTypes = {
     product: PropTypes.object,
+    onToggleActive: PropTypes.func,
 };

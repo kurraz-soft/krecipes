@@ -1,5 +1,13 @@
 import shortid from 'shortid';
 
+const InitialProduct = {
+    id: '',
+    name: '',
+    price: 0,
+    quantity: 1,
+    is_active: true,
+};
+
 export default function (state = {
     recipes: [],
 }, action) {
@@ -74,10 +82,9 @@ export default function (state = {
                     products: [
                         ...item.products,
                         {
+                            ...InitialProduct,
                             id: shortid.generate(),
                             name: action.name,
-                            price: 0,
-                            quantity: 1,
                         }
                     ],
                 }:item;
@@ -163,6 +170,36 @@ export default function (state = {
             return {
                 ...state,
                recipes: recipes,
+            };
+        }
+        case 'SET_RECIPE_PRODUCT_ACTIVITY':
+        {
+            const recipes = state.recipes.map(recipe => {
+                if(recipe.id === action.recipe_id)
+                {
+                    const products = recipe.products.map(product => {
+                        if(product.id === action.product_id)
+                        {
+                            return {
+                                ...product,
+                                is_active: action.is_active,
+                            };
+                        }else
+                            return product;
+                    });
+                    return {
+                        ...recipe,
+                        products: products,
+                    };
+                }else
+                    return recipe;
+            });
+
+            saveRecipes(recipes);
+
+            return {
+                ...state,
+                recipes: recipes,
             };
         }
         default:

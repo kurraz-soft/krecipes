@@ -30,11 +30,11 @@ export default class ProductsEditList extends React.Component
     {
         return (
             <div>
-                <div className="row" style={{fontWeight: "bold"}}>
-                    <div className="col s8">Name</div>
-                    <div className="col s1">Quantity</div>
-                    <div className="col s1">Price</div>
-                    <div className="col s1">Sum</div>
+                <div className="row center-align" style={{fontWeight: "bold"}}>
+                    <div className="col s5">Name</div>
+                    <div className="col s2">Quantity</div>
+                    <div className="col s2">Price</div>
+                    <div className="col s2">Sum</div>
                     <div className="col s1" />
                 </div>
                 <hr />

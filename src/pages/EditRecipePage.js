@@ -56,7 +56,7 @@ export default class EditRecipePage extends Component
                         </h4>
                     </div>
                     <div className='col s3 right-align'>
-                        <Link to={'/'} onClick={this.onSave.bind(this)}><h5>Save</h5></Link>
+                        <Link to={'/viewRecipe/' + this.current_recipe.id} onClick={this.onSave.bind(this)}><h5>Save</h5></Link>
                     </div>
                 </div>
 

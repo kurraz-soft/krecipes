@@ -8,6 +8,7 @@ import { createRecipe, loadLocalData } from "../actions/recipeActions";
 import EditRecipePage from "../pages/EditRecipePage";
 import shortid from 'shortid';
 import AddProductPage from "../pages/AddProductPage";
+import ViewRecipePage from "../pages/ViewRecipePage";
 
 class Layout extends Component
 {
@@ -33,8 +34,11 @@ class Layout extends Component
                         <Route exact path='/'>
                             <RecipesListPage createRecipe={this.createRecipe.bind(this)}/>
                         </Route>
-                        <Route path='/editRecipe/:id' render={(props) => (
+                        <Route exact path='/editRecipe/:id' render={(props) => (
                             <EditRecipePage {...props} />
+                        )} />
+                        <Route exact path='/viewRecipe/:id' render={(props) => (
+                            <ViewRecipePage {...props} />
                         )} />
                         <Route exact path='/addProduct/:recipe_id' render={props => (
                             <AddProductPage {...props} />
