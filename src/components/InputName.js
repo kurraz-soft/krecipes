@@ -2,40 +2,45 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-export default class InputNamePage extends Component
+export default class InputName extends Component
 {
-    constructor() {
+    constructor()
+    {
         super();
         this.state = {
             results: [],
+            value: "",
         };
     }
 
-    componentDidMount()
+    onChange(evt)
     {
-        this.input.focus();
-    }
-
-    onKeyUp(evt) {
-
         const q = evt.target.value;
+
         const results = this.props.variants.filter((item) => {
             return q.length > 0 && item.match(new RegExp('^' + q, 'i')) !== null
         });
-        this.setState({results: results});
-
+        this.setState({results: results, value: q});
     }
 
-    onSubmit(evt) {
+    onSubmit(evt)
+    {
         evt.preventDefault();
 
-        this.props.callback(this.input.value);
+        this.props.onSubmit(this.state.value);
+    }
+
+    onSelectResult(e)
+    {
+        e.preventDefault();
+        this.setState({value: e.target.innerText});
+        this.input.focus();
     }
 
     render() {
 
-        const res = this.state.results.map((item) => {
-            return <li><a href='#'>{item}</a></li>;
+        const res = this.state.results.map((item, index) => {
+            return <li key={index}><a href='#' onClick={this.onSelectResult.bind(this)}>{item}</a></li>;
         });
 
         return (
@@ -44,9 +49,10 @@ export default class InputNamePage extends Component
                     <div className="col s10">
                         <form onSubmit={this.onSubmit.bind(this)}>
                             <input
-                                name="name"
-                                onKeyUp={this.onKeyUp.bind(this)}
-                                ref={ (input) => { this.input = input } }
+                                onChange={this.onChange.bind(this)}
+                                value={this.state.value}
+                                autoFocus={true}
+                                ref={(input) => this.input = input}
                             />
                         </form>
                     </div>
@@ -62,13 +68,14 @@ export default class InputNamePage extends Component
     }
 }
 
-InputNamePage.propTypes = {
+InputName.propTypes = {
     backUrl: PropTypes.string,
     variants: PropTypes.array,
-    callback: PropTypes.func,
+    onSubmit: PropTypes.func,
 };
 
-InputNamePage.defaultProps = {
+InputName.defaultProps = {
     backUrl: '/',
     variants: [],
+    onSubmit: (value) => {},
 };

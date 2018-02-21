@@ -2,32 +2,39 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import EditableText from "../components/EditableText";
 import { editNameRecipe } from "../actions/recipeActions";
-import ProductEdit from "../components/ProductEdit";
+import {deleteProduct} from "../actions/productActions";
+import ProductsList from "../components/ProductsList";
 
 @connect((store) => {
     return {
         recipes: store.recipes.recipes,
-        products: store.products.products,
     }
 })
 export default class EditRecipePage extends Component
 {
-    componentWillMount()
+    constructor(props)
     {
-        this.current_recipe = null;
+        super(props);
 
-        this.current_recipe = this.props.recipes.find((item) => {
-            return item.id === this.props.match.params.id;
+        this.recipe_index = props.recipes.findIndex((item) => {
+            return item.id === props.match.params.id;
         });
+        this.current_recipe = props.recipes[this.recipe_index];
     }
 
     onChangeName(value)
     {
-        console.log(value);
         this.props.dispatch(editNameRecipe(this.current_recipe.id, value));
     }
 
+    onProductDelete(id)
+    {
+        this.props.dispatch(deleteProduct(id,this.current_recipe.id));
+    }
+
     render() {
+
+        const current_recipe = this.props.recipes[this.recipe_index];
 
         return (
             <div>
@@ -38,20 +45,11 @@ export default class EditRecipePage extends Component
                 <hr />
 
                 <br />
-                <div>
-                    <div className="row" style={{fontWeight: "bold"}}>
-                        <div className="col s8">Name</div>
-                        <div className="col s1">Quantity</div>
-                        <div className="col s1">Price</div>
-                        <div className="col s1">Sum</div>
-                        <div className="col s1" />
-                    </div>
-                    <hr />
-                    {this.current_recipe.products.map(product => {
-                        return <ProductEdit product={product}/>
-                    })}
-                    <button className="btn">+</button>
-                </div>
+                <ProductsList
+                    recipeId={this.current_recipe.id}
+                    products={current_recipe.products}
+                    onDelete={this.onProductDelete.bind(this)}
+                />
             </div>
         );
     }

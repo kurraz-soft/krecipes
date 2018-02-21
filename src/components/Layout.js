@@ -7,6 +7,7 @@ import RecipesListPage from "../pages/RecipesListPage";
 import { createRecipe, loadLocalData } from "../actions/recipeActions";
 import EditRecipePage from "../pages/EditRecipePage";
 import shortid from 'shortid';
+import AddProductPage from "../pages/AddProductPage";
 
 class Layout extends Component
 {
@@ -14,7 +15,7 @@ class Layout extends Component
     {
         super(props);
 
-        props.dispatch(loadLocalData());
+        props.dispatch(loadLocalData(this.props.history));
     }
 
     createRecipe()
@@ -35,9 +36,9 @@ class Layout extends Component
                         <Route path='/editRecipe/:id' render={(props) => (
                             <EditRecipePage {...props} />
                         )} />
-                        {/*<Route exact path='/addProduct/:recipe_id'>
-                            <InputNamePage backUrl='/' callback={} variants={this.itemVariants} />
-                        </Route>*/}
+                        <Route exact path='/addProduct/:recipe_id' render={props => (
+                            <AddProductPage {...props} />
+                        )} />
                     </Switch>
                 </div>
             </div>

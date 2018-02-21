@@ -20,7 +20,32 @@ export default function (state = {
                 products: products,
             };
         }
+        case 'CREATE_PRODUCT':
+        {
+            let products = state.products.filter(item => {
+                return item.name !== action.name;
+            });
+
+            products = [
+                ...products,
+                {
+                    name: action.name,
+                    price: 0,
+                }
+            ];
+
+            saveProducts(products);
+
+            return {
+                ...state,
+                products: products,
+            };
+        }
         default:
             return state;
     }
+}
+
+function saveProducts(products) {
+    localStorage.products = JSON.stringify(products);
 }

@@ -21,8 +21,9 @@ export function createRecipe(id, name) {
     }
 }
 
-export function loadLocalData() {
+export function loadLocalData(history) {
     return {
         type: 'LOAD_LOCAL_DATA',
+        history: history,
     }
 }
