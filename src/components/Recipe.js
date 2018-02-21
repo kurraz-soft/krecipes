@@ -18,7 +18,7 @@ export default class Recipe extends Component
         return (
             <div className="row" style={rowStyle}>
                 <Link to={ '/viewRecipe/' + this.props.item.id }>
-                    <div className="col s11 hoverable card-panel">
+                    <div className="col s11 card-panel">
                         {this.props.item.name}
                     </div>
                 </Link>

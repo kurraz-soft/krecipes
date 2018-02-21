@@ -22,7 +22,7 @@ export default class Product extends React.Component
     {
         return (
             <div
-                className={'row hoverable card-panel ' + (this.state.is_active?'':'teal lighten-2 cross-out')}
+                className={'row card-panel ' + (this.state.is_active?'':'teal lighten-2 cross-out')}
                 onClick={this.handleToggleActive.bind(this)}
             >
                 <div className="col s5" style={{textDecoration: 'inherit', lineHeight: '30px', fontSize: 'large'}}>{this.props.product.name}</div>
