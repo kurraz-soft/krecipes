@@ -11,19 +11,32 @@ export default class Recipe extends Component
     deleteRecord(e) {
         e.preventDefault();
 
-        this.props.deleteRecipe(this.props.item.id);
+        if(confirm('Delete the recipe?'))
+            this.props.deleteRecipe(this.props.item.id);
     }
 
     render() {
         return (
-            <div className="row" style={rowStyle}>
-                <Link to={ '/viewRecipe/' + this.props.item.id }>
-                    <div className="col s11 card-panel">
-                        {this.props.item.name}
+            <div className="row recipe-row" style={rowStyle}>
+                <Link to={ '/viewRecipe/' + this.props.item.id } className='black-text'>
+                    <div className="col s10 clickable-list-cell light-blue lighten-2">
+                        <div className='col s1' style={{ paddingLeft: '0', position: 'relative'}}>
+                            <i className='material-icons' style={{top: '8px', position: 'absolute'}}>book</i>
+                        </div>
+                        <div className='col s11'>{this.props.item.name}</div>
                     </div>
                 </Link>
-                <div className="col s1">
-                    <a href="#" title="Delete" onClick={this.deleteRecord.bind(this)}><i className="material-icons">delete</i></a>
+                {/*<div className="col s1 center-align clickable-list-cell">
+                    <Link to={'/editRecipe/' + this.props.item.id} title="Edit" className='red-text'>
+                        <i className="material-icons">edit</i>
+                    </Link>
+                </div>*/}
+                <div className="col s2 center-align clickable-list-cell light-blue lighten-2" style={{position: 'relative'}}>
+                    &nbsp;
+                    <a href="#" title="Delete" onClick={this.deleteRecord.bind(this)} className='red-text'
+                       style={{position: 'absolute', top: 'calc(50% - 15px)', left: 'calc(50% - 15px)'}}>
+                        <i className="material-icons small">delete</i>
+                    </a>
                 </div>
             </div>
         );
