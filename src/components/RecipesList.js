@@ -6,15 +6,23 @@ export default class RecipesList extends Component
 {
     render() {
 
-        const recipes = this.props.recipes.map((item, index) => {
-            return <Recipe item={item} key={index} deleteRecipe={this.props.deleteRecipe}/>
-        });
+        let recipes = <div className='center-align'><i>No recipes</i></div>;
+        if(this.props.recipes.length > 0)
+        {
+            recipes = this.props.recipes.map((item) => {
+                return <Recipe item={item} key={item.id} deleteRecipe={this.props.deleteRecipe}/>
+            });
+        }
+
 
         return (
             <div>
                 <div>
-                    { recipes }
-                    <button onClick={this.props.createRecipe} className="btn">+</button>
+                    {recipes}
+                </div>
+                <br />
+                <div className='row'>
+                    <button onClick={this.props.createRecipe} className="btn center-align col s12">Create new Recipe</button>
                 </div>
             </div>
         );

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import 'materialize-css'
-import 'materialize-css/dist/css/materialize.min.css'
 import RecipesListPage from "../pages/RecipesListPage";
 import { createRecipe, loadLocalData } from "../actions/recipeActions";
 import EditRecipePage from "../pages/EditRecipePage";

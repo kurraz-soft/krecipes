@@ -55,17 +55,15 @@ export default class ViewRecipePage extends Component
     render() {
         return (
             <div>
-                <div className='row'>
+                <div className='row card-panel deep-orange darken-1 white-text card-panel-header'>
                     <div className='col s3'>
-                        <Link to={'/'}><h4><i className='material-icons'>chevron_left</i></h4></Link>
+                        <Link className='white-text btn-back' to={'/'}><i className='material-icons medium'>chevron_left</i></Link>
                     </div>
-                    <div className='col s6'>
-                        <h4 className="center-align">
-                            {this.current_recipe.name}
-                        </h4>
+                    <div className='col s6 center-align card-panel-header-title'>
+                        <strong>{this.current_recipe.name}</strong>
                     </div>
                     <div className='col s3 right-align'>
-                        <Link to={'/editRecipe/' + this.current_recipe.id}><h5>Edit</h5></Link>
+                        <Link className='white-text btn-control' to={'/editRecipe/' + this.current_recipe.id}><i className='material-icons small'>edit</i></Link>
                     </div>
                 </div>
                 <hr />

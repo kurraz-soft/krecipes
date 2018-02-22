@@ -25,7 +25,7 @@ export default class RecipesListPage extends Component
     render() {
         return (
             <div>
-                <h3>Shopping List</h3>
+                <h4 className='center-align'>Shopping List</h4>
                 <RecipesList recipes={this.props.recipes} deleteRecipe={this.deleteRecipe} createRecipe={this.props.createRecipe} />
             </div>
         );
