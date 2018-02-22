@@ -8,5 +8,6 @@ module.exports = merge(common, {
         compress: true,
         port: 9000,
         overlay: true,
-    }
+    },
+    devtool: 'inline-source-map',
 });
