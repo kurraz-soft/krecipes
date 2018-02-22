@@ -14,30 +14,11 @@ export default function (state = {
 
     switch (action.type)
     {
-        case 'LOAD_LOCAL_DATA':
-        {
-            let recipes = state.recipes;
-            //Load recipes from localStorage
-            if(typeof localStorage.recipes !== 'undefined' && localStorage.recipes.length > 0)
-            {
-                try
-                {
-                    recipes = JSON.parse(localStorage.recipes);
-                }catch (e) {}
-            }
-
-            return {
-                ...state,
-                recipes: recipes,
-            };
-        }
         case 'DELETE_RECIPE':
         {
             const recipes = state.recipes.filter((item) => {
                 return item.id !== action.payload;
             });
-
-            saveRecipes(recipes);
 
             return {
                 ...state,
@@ -55,8 +36,6 @@ export default function (state = {
                 }
             ];
 
-            saveRecipes(recipes);
-
             return {
                 ...state,
                 recipes: recipes,
@@ -67,8 +46,6 @@ export default function (state = {
             const recipes = state.recipes.map((item) => {
                 return item.id === action.id ? {...item, name: action.name} : item;
             });
-
-            saveRecipes(recipes);
 
             return {
                 ...state,
@@ -89,8 +66,6 @@ export default function (state = {
                     ],
                 }:item;
             });
-
-            saveRecipes(recipes);
 
             return {
                 ...state,
@@ -114,8 +89,6 @@ export default function (state = {
                     return item;
             });
 
-            saveRecipes(recipes);
-
             return {
                 ...state,
                 recipes: recipes,
@@ -134,8 +107,6 @@ export default function (state = {
                 }else
                     return recipe;
             });
-
-            saveRecipes(recipes);
 
             return {
                 ...state,
@@ -195,8 +166,6 @@ export default function (state = {
                     return recipe;
             });
 
-            saveRecipes(recipes);
-
             return {
                 ...state,
                 recipes: recipes,
@@ -205,8 +174,4 @@ export default function (state = {
         default:
             return state;
     }
-}
-
-function saveRecipes(recipes) {
-    localStorage.recipes = JSON.stringify(recipes);
 }

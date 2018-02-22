@@ -3,23 +3,6 @@ export default function (state = {
 }, action) {
     switch (action.type)
     {
-        case 'LOAD_LOCAL_DATA':
-        {
-            let products = state.products;
-            //Load products from localStorage
-            if(typeof localStorage.products !== 'undefined' && localStorage.products.length > 0)
-            {
-                try
-                {
-                    products = JSON.parse(localStorage.products);
-                }catch (e) {}
-            }
-
-            return {
-                ...state,
-                products: products,
-            };
-        }
         case 'CREATE_PRODUCT':
         {
             let products = state.products.filter(item => {
@@ -33,8 +16,6 @@ export default function (state = {
                     price: 0,
                 }
             ];
-
-            saveProducts(products);
 
             return {
                 ...state,
@@ -74,8 +55,6 @@ export default function (state = {
                 ];
             });
 
-            saveProducts(products);
-
             return {
                 ...state,
                 products: products,
@@ -84,8 +63,4 @@ export default function (state = {
         default:
             return state;
     }
-}
-
-function saveProducts(products) {
-    localStorage.products = JSON.stringify(products);
 }

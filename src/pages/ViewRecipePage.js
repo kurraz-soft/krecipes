@@ -32,18 +32,24 @@ export default class ViewRecipePage extends Component
         }
     }
 
+    componentWillReceiveProps(nextProps)
+    {
+        this.current_recipe = nextProps.recipes.find((item) => {
+            return item.id === this.props.match.params.id;
+        });
+
+        let price_left = 0;
+        this.current_recipe.products.forEach(item => {
+            if(item.is_active)
+                price_left += item.price * item.quantity;
+        });
+
+        this.setState({price_left: price_left});
+    }
+
     handleToggleActive(product_id, is_active)
     {
         this.props.dispatch(setRecipeProductActivity(this.current_recipe.id,product_id,is_active));
-
-        const product = this.current_recipe.products.find(product => {
-            return product.id === product_id;
-        });
-        let price_left = is_active?
-            (this.state.price_left + product.price * product.quantity):
-            (this.state.price_left - product.price * product.quantity);
-
-        this.setState({price_left: price_left});
     }
 
     render() {
@@ -74,6 +80,7 @@ export default class ViewRecipePage extends Component
                 </div>
                 <hr />
                 {this.current_recipe.products.map((product) => {
+                    console.log(product.is_active);
                     return <Product product={product} key={product.id} onToggleActive={this.handleToggleActive.bind(this)}/>
                 })}
                 <hr />

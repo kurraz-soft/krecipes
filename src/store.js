@@ -1,8 +1,6 @@
 import {createStore, applyMiddleware, compose} from 'redux';
 import reducers from './reducers'
 import { createLogger } from 'redux-logger'
-import thunk from 'redux-thunk'
-import promise from 'redux-promise-middleware'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -11,6 +9,12 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     return next(action);
 };*/
 
-const store = createStore(reducers(),composeEnhancers(applyMiddleware(promise(), thunk, createLogger())));
+const localState = localStorage.reduxState ? JSON.parse(localStorage.reduxState) : {};
+
+const store = createStore(reducers(), localState, composeEnhancers(applyMiddleware(createLogger())));
+
+store.subscribe(() => {
+    localStorage.reduxState = JSON.stringify(store.getState());
+});
 
 export default store;
