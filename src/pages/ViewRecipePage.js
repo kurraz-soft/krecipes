@@ -19,19 +19,31 @@ export default class ViewRecipePage extends Component
         });
 
         let total_price = 0;
+        let price_left = 0;
         this.current_recipe.products.forEach(product => {
             total_price += product.price * product.quantity;
+            if(product.is_active)
+                price_left += product.price * product.quantity;
         });
 
         this.state = {
             price_total: total_price,
-            price_left: total_price,
+            price_left: price_left,
         }
     }
 
     handleToggleActive(product_id, is_active)
     {
         this.props.dispatch(setRecipeProductActivity(this.current_recipe.id,product_id,is_active));
+
+        const product = this.current_recipe.products.find(product => {
+            return product.id === product_id;
+        });
+        let price_left = is_active?
+            (this.state.price_left + product.price * product.quantity):
+            (this.state.price_left - product.price * product.quantity);
+
+        this.setState({price_left: price_left});
     }
 
     render() {

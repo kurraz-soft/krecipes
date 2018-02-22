@@ -10,8 +10,19 @@ export default class ProductsEditList extends React.Component
         super(props);
 
         this.state = {
-            products: [...this.props.products],
+            products: [...props.products],
+            price_total: this.calcTotalPrice(props.products),
         };
+    }
+
+    calcTotalPrice(products)
+    {
+        let price_total = 0;
+        products.forEach(item => {
+            price_total += item.price * item.quantity;
+        });
+
+        return price_total;
     }
 
     handleInputChange(product)
@@ -23,7 +34,8 @@ export default class ProductsEditList extends React.Component
 
         const products = this.state.products;
         products[index] = product;
-        this.setState({products: products});
+
+        this.setState({products: products, price_total: this.calcTotalPrice(products)});
     }
 
     render()
@@ -47,6 +59,11 @@ export default class ProductsEditList extends React.Component
                     />
                 })}
                 <Link className="btn" to={'/addProduct/' + this.props.recipeId}>+</Link>
+                <hr />
+                <div className="row" style={{fontWeight: 'bold'}}>
+                    <div className="col s10 right-align">Total</div>
+                    <div className="col s1 right-align">{this.state.price_total.toFixed(2)}</div>
+                </div>
             </div>
         );
     }
