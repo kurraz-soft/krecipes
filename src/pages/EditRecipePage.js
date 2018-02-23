@@ -35,7 +35,7 @@ export default class EditRecipePage extends Component
 
     onSave()
     {
-        this.props.dispatch(saveRecipeProducts(this.current_recipe.id,this.productList.props.products));
+        this.props.dispatch(saveRecipeProducts(this.current_recipe.id,this.productList.state.products));
     }
 
     render() {
@@ -60,9 +60,6 @@ export default class EditRecipePage extends Component
                     </div>
                 </div>
 
-                <hr />
-
-                <br />
                 <ProductsEditList
                     recipeId={this.current_recipe.id}
                     products={current_recipe.products}

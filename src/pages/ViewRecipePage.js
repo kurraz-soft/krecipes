@@ -78,7 +78,6 @@ export default class ViewRecipePage extends Component
                 </div>
                 <hr />
                 {this.current_recipe.products.map((product) => {
-                    console.log(product.is_active);
                     return <Product product={product} key={product.id} onToggleActive={this.handleToggleActive.bind(this)}/>
                 })}
                 <hr />

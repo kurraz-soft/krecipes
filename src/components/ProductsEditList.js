@@ -15,6 +15,15 @@ export default class ProductsEditList extends React.Component
         };
     }
 
+    handleDelete(id)
+    {
+        const products = this.state.products.filter(item => {
+            return item.id !== id;
+        });
+        this.setState({products: products});
+        this.props.onDelete(id);
+    }
+
     calcTotalPrice(products)
     {
         let price_total = 0;
@@ -42,6 +51,9 @@ export default class ProductsEditList extends React.Component
     {
         return (
             <div>
+                <div className='row'>
+                    <Link className="btn col s12" to={'/addProduct/' + this.props.recipeId}>Add Item</Link>
+                </div>
                 <div className="row center-align flow-text" style={{fontWeight: "bold"}}>
                     <div className="col s5">Name</div>
                     <div className="col s2">Quantity</div>
@@ -53,14 +65,12 @@ export default class ProductsEditList extends React.Component
                 {this.props.products.map(product => {
                     return <ProductEdit
                         product={product}
-                        onDelete={this.props.onDelete}
+                        onDelete={this.handleDelete.bind(this)}
                         key={product.id}
                         onInputChange={this.handleInputChange.bind(this)}
                     />
                 })}
-                <div className='row'>
-                    <Link className="btn col s12" to={'/addProduct/' + this.props.recipeId}>Add Item</Link>
-                </div>
+
                 <hr />
                 <div className="row" style={{fontWeight: 'bold'}}>
                     <div className="col s10 right-align">Total</div>
