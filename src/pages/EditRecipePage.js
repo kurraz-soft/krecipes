@@ -17,8 +17,6 @@ export default class EditRecipePage extends Component
     {
         super(props);
 
-        this.productList = null;
-
         this.recipe_index = props.recipes.findIndex((item) => {
             return item.id === props.match.params.id;
         });
@@ -37,7 +35,7 @@ export default class EditRecipePage extends Component
 
     onSave()
     {
-        this.props.dispatch(saveRecipeProducts(this.current_recipe.id,this.productList.state.products));
+        this.props.dispatch(saveRecipeProducts(this.current_recipe.id,this.productList.props.products));
     }
 
     render() {
@@ -46,17 +44,19 @@ export default class EditRecipePage extends Component
 
         return (
             <div>
-                <div className='row'>
+                <div className='row card-panel deep-orange darken-1 white-text card-panel-header'>
                     <div className='col s3'>
-                        <Link to={'/'}><h5>Cancel</h5></Link>
+                        <Link title='Cancel' className='white-text btn-back' to={'/'}><i className='material-icons medium'>navigate_before</i></Link>
                     </div>
-                    <div className='col s6'>
-                        <h4 className="center-align">
+                    <div className='col s6 center-align card-panel-header-title'>
+                        <strong>
                             <EditableText text={ this.current_recipe.name } onChange={ this.onChangeName.bind(this) }/>
-                        </h4>
+                        </strong>
                     </div>
                     <div className='col s3 right-align'>
-                        <Link to={'/viewRecipe/' + this.current_recipe.id} onClick={this.onSave.bind(this)}><h5>Save</h5></Link>
+                        <Link title='Save' className='white-text btn-control' to={'/viewRecipe/' + this.current_recipe.id} onClick={this.onSave.bind(this)}>
+                            <i className='material-icons small'>save</i>
+                        </Link>
                     </div>
                 </div>
 
