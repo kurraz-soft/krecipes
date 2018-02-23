@@ -46,7 +46,7 @@ export default class InputName extends Component
         return (
             <div>
                 <div className="row">
-                    <div className="col s10">
+                    <div className="col s8">
                         <form onSubmit={this.onSubmit.bind(this)}>
                             <input
                                 onChange={this.onChange.bind(this)}

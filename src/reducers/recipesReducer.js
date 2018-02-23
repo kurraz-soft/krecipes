@@ -92,7 +92,6 @@ export default function (state = {
             return {
                 ...state,
                 recipes: recipes,
-                //timestamp: + new Date(),
             };
         }
         case 'SAVE_RECIPE_PRODUCTS':

@@ -3,7 +3,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-    entry: ['./src/app.js', './node_modules/materialize-css/dist/css/materialize.min.css', './sass/style.sass'],
+    entry: [
+        './src/app.js',
+        './sass/style.sass'
+    ],
     output: {
         path: path.resolve(__dirname, 'public'),
         filename: '[name].bundle.js'
@@ -26,9 +29,26 @@ const config = {
                 test: /\.(sass|scss)/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader'],
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                minimize: true,
+                            },
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                includePaths: [path.resolve(__dirname, 'node_modules')],
+                            }
+                        }
+                    ],
                 })
             },
+            /*{
+                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+                use: 'url-loader?name=/fonts/[name].[ext]'
+            }*/
             {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
                 loader: 'file-loader',

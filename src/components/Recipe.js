@@ -19,7 +19,7 @@ export default class Recipe extends Component
         return (
             <div className="row recipe-row" style={rowStyle}>
                 <Link to={ '/viewRecipe/' + this.props.item.id } className='black-text'>
-                    <div className="col s10 clickable-list-cell light-blue lighten-2">
+                    <div className="col s10 clickable-list-cell">
                         <div className='col s1' style={{ paddingLeft: '0', position: 'relative'}}>
                             <i className='material-icons' style={{top: '8px', position: 'absolute'}}>book</i>
                         </div>
@@ -31,9 +31,9 @@ export default class Recipe extends Component
                         <i className="material-icons">edit</i>
                     </Link>
                 </div>*/}
-                <div className="col s2 center-align clickable-list-cell light-blue lighten-2" style={{position: 'relative'}}>
+                <div className="col s2 center-align clickable-list-cell grey lighten-4" style={{position: 'relative'}}>
                     &nbsp;
-                    <a href="#" title="Delete" onClick={this.deleteRecord.bind(this)} className='red-text'
+                    <a href="#" title="Delete" onClick={this.deleteRecord.bind(this)} className='light-blue-text'
                        style={{position: 'absolute', top: 'calc(50% - 15px)', left: 'calc(50% - 15px)'}}>
                         <i className="material-icons small">delete</i>
                     </a>

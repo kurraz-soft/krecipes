@@ -5,5 +5,5 @@ const common = require('./webpack.common');
 module.exports = merge(common, {
     plugins: [
         new webpack.optimize.UglifyJsPlugin(),
-    ]
+    ],
 });

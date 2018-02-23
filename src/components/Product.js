@@ -22,6 +22,7 @@ export default class Product extends React.Component
             <div
                 className={'row card-panel ' + (this.props.product.is_active?'':'teal lighten-2 cross-out')}
                 onClick={this.handleToggleActive.bind(this)}
+                style={{padding:'10px'}}
             >
                 <div className="col s5" style={{textDecoration: 'inherit', lineHeight: '30px', fontSize: 'large'}}>{this.props.product.name}</div>
                 <div className="col s2 right-align">{this.props.product.quantity}</div>

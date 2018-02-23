@@ -42,7 +42,7 @@ export default class ProductsEditList extends React.Component
     {
         return (
             <div>
-                <div className="row center-align" style={{fontWeight: "bold"}}>
+                <div className="row center-align flow-text" style={{fontWeight: "bold"}}>
                     <div className="col s5">Name</div>
                     <div className="col s2">Quantity</div>
                     <div className="col s2">Price</div>
@@ -58,7 +58,9 @@ export default class ProductsEditList extends React.Component
                         onInputChange={this.handleInputChange.bind(this)}
                     />
                 })}
-                <Link className="btn" to={'/addProduct/' + this.props.recipeId}>+</Link>
+                <div className='row'>
+                    <Link className="btn col s12" to={'/addProduct/' + this.props.recipeId}>Add Item</Link>
+                </div>
                 <hr />
                 <div className="row" style={{fontWeight: 'bold'}}>
                     <div className="col s10 right-align">Total</div>

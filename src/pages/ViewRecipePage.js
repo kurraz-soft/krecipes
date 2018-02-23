@@ -57,7 +57,7 @@ export default class ViewRecipePage extends Component
             <div>
                 <div className='row card-panel deep-orange darken-1 white-text card-panel-header'>
                     <div className='col s3'>
-                        <Link className='white-text btn-back' to={'/'}><i className='material-icons medium'>chevron_left</i></Link>
+                        <Link className='white-text btn-back' to={'/'}><i className='material-icons medium'>navigate_before</i></Link>
                     </div>
                     <div className='col s6 center-align card-panel-header-title'>
                         <strong>{this.current_recipe.name}</strong>

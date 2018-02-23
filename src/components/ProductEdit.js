@@ -38,6 +38,11 @@ export default class ProductEdit extends React.Component
         })
     }
 
+    handleFocus(e)
+    {
+        e.target.select();
+    }
+
     render()
     {
         return (
@@ -46,10 +51,24 @@ export default class ProductEdit extends React.Component
                     <EditableText text={this.state.name} onChange={this.handleChangeName} />
                 </div>
                 <div className="col s2">
-                    <input type="number" value={this.state.quantity} className="right-align" onChange={this.handleChangeQuantity.bind(this)}/>
+                    <input
+                        type="number"
+                        value={this.state.quantity}
+                        className="right-align"
+                        onChange={this.handleChangeQuantity.bind(this)}
+                        onFocus={this.handleFocus}
+                        min="0"
+                    />
                 </div>
                 <div className="col s2">
-                    <input type="number" value={this.state.price} className="right-align" onChange={this.handleChangePrice.bind(this)}/>
+                    <input
+                        type="number"
+                        value={this.state.price}
+                        className="right-align"
+                        onChange={this.handleChangePrice.bind(this)}
+                        onFocus={this.handleFocus}
+                        min="0"
+                    />
                 </div>
                 <div className="col s2">
                     <input type="text" value={this.state.price * this.state.quantity} readOnly className="right-align"/>

@@ -55,8 +55,8 @@ export default class EditableText extends React.Component
                             <input type="text" defaultValue={ this.state.text } ref={input => this.input = input} autoFocus />
                         </div>
                         <div className="col s4">
-                            <button className="btn" type="submit">OK</button>
-                            &nbsp;
+                            {/*<button className="btn" type="submit">OK</button>
+                            &nbsp;*/}
                             <button className="btn" type="button" onClick={this.handleEditCancel.bind(this)}>CANCEL</button>
                         </div>
                     </form>

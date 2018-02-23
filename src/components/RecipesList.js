@@ -17,12 +17,12 @@ export default class RecipesList extends Component
 
         return (
             <div>
-                <div>
-                    {recipes}
-                </div>
-                <br />
                 <div className='row'>
                     <button onClick={this.props.createRecipe} className="btn center-align col s12">Create new Recipe</button>
+                </div>
+
+                <div>
+                    {recipes}
                 </div>
             </div>
         );
