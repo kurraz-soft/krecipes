@@ -5,6 +5,7 @@ import {editNameRecipe, saveRecipeProducts} from "../actions/recipeActions";
 import {deleteProduct} from "../actions/productActions";
 import ProductsEditList from "../components/ProductsEditList";
 import {Link} from 'react-router-dom'
+import EditableTextModal from "../components/EditableTextModal";
 
 @connect((store) => {
     return {
@@ -50,7 +51,7 @@ export default class EditRecipePage extends Component
                     </div>
                     <div className='col s6 center-align card-panel-header-title'>
                         <strong>
-                            <EditableText text={ this.current_recipe.name } onChange={ this.onChangeName.bind(this) }/>
+                            <EditableTextModal text={ current_recipe.name } onChange={ this.onChangeName.bind(this) }/>
                         </strong>
                     </div>
                     <div className='col s3 right-align'>
@@ -61,7 +62,7 @@ export default class EditRecipePage extends Component
                 </div>
 
                 <ProductsEditList
-                    recipeId={this.current_recipe.id}
+                    recipeId={current_recipe.id}
                     products={current_recipe.products}
                     onDelete={this.onProductDelete.bind(this)}
                     ref={(productsList) => this.productList = productsList}

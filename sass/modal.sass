@@ -1,0 +1,28 @@
+.modal-overlay
+  -webkit-transition: opacity 0.25s, visibility 0s 0.5s
+  -moz-transition: opacity 0.25s, visibility 0s 0.5s
+  -ms-transition: opacity 0.25s, visibility 0s 0.5s
+  -o-transition: opacity 0.25s, visibility 0s 0.5s
+  transition: opacity 0.25s, visibility 0s 0.5s
+  opacity: 0
+  display: block
+  visibility: hidden
+
+.modal-overlay-opened
+  opacity: 0.5
+  visibility: visible
+  -webkit-transition: opacity 0.5s
+  transition: opacity 0.5s
+
+.modal
+  transition: top .5s, visibility 0s .5s
+  -webkit-transition: top .5s, visibility 0s .5s
+  z-index: 1000
+  top: -500px
+  display: block
+  visibility: hidden
+.modal-opened
+  top: 10%
+  visibility: visible
+  transition: top .5s
+  -webkit-transition: top .5s

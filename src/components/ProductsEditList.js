@@ -49,12 +49,27 @@ export default class ProductsEditList extends React.Component
 
     render()
     {
+        let products = null;
+        if(this.props.products.length > 0)
+        {
+            products = this.props.products.map(product => {
+                return <ProductEdit
+                    product={product}
+                    onDelete={this.handleDelete.bind(this)}
+                    key={product.id}
+                    onInputChange={this.handleInputChange.bind(this)}
+                />
+            });
+        }else
+            products = <div className='center-align'><br /><i>Empty</i><br /><br /></div>;
+
         return (
+
             <div>
                 <div className='row'>
                     <Link className="btn col s12" to={'/addProduct/' + this.props.recipeId}>Add Item</Link>
                 </div>
-                <div className="row center-align flow-text" style={{fontWeight: "bold"}}>
+                <div className="row center-align flow-text" style={{fontWeight: "bold", fontSize:"small"}}>
                     <div className="col s5">Name</div>
                     <div className="col s2">Quantity</div>
                     <div className="col s2">Price</div>
@@ -62,15 +77,7 @@ export default class ProductsEditList extends React.Component
                     <div className="col s1" />
                 </div>
                 <hr />
-                {this.props.products.map(product => {
-                    return <ProductEdit
-                        product={product}
-                        onDelete={this.handleDelete.bind(this)}
-                        key={product.id}
-                        onInputChange={this.handleInputChange.bind(this)}
-                    />
-                })}
-
+                {products}
                 <hr />
                 <div className="row" style={{fontWeight: 'bold'}}>
                     <div className="col s10 right-align">Total</div>
