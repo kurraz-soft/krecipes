@@ -22,6 +22,15 @@ export default class AddProductButton extends React.Component
     {
         if(this.props.inputModeEnabled)
         {
+            let clearBtn = '';
+            if(this.props.value.length > 0)
+            {
+                clearBtn =
+                    <a href='#' onClick={this.handleClear.bind(this)}>
+                        <i className='prefix material-icons' style={{right: 0}}>cancel</i>
+                    </a>
+            }
+
             return (
                 <div className='col s12' style={{padding: '5px'}}>
                     <form onSubmit={this.props.onSubmit}>
@@ -33,9 +42,7 @@ export default class AddProductButton extends React.Component
                                 autoFocus={true}
                                 ref={(input) => this.input = input}
                             />
-                            <a href='#' onClick={this.handleClear.bind(this)}>
-                                <i className='prefix material-icons' style={{right: 0}}>cancel</i>
-                            </a>
+                            {clearBtn}
                             <label style={{marginLeft: 0}}>Product Name</label>
                         </div>
                         <div className='col s2' style={{lineHeight: '63px'}}>
