@@ -6,6 +6,7 @@ import RecipesListPage from "../pages/RecipesListPage";
 import { loadLocalData } from "../actions/recipeActions";
 import EditRecipePage from "../pages/EditRecipePage";
 import ViewRecipePage from "../pages/ViewRecipePage";
+import SettingsPage from "../pages/SettingsPage";
 import {TransitionGroup, CSSTransition} from 'react-transition-group'
 
 class Layout extends Component
@@ -21,7 +22,7 @@ class Layout extends Component
         return (
             <div className="layout">
                 <div className="container">
-                    <TransitionGroup>
+                   <TransitionGroup>
                         <CSSTransition
                             key={this.props.history.location.pathname}
                             classNames='fade'
@@ -42,6 +43,9 @@ class Layout extends Component
                                 <Route exact path='/viewRecipe/:id' render={(props) => (
                                     <ViewRecipePage {...props} />
                                 )} />
+                                <Route exact path='/settings' render={(props) => (
+                                    <SettingsPage {...props} />
+                                )} />
                             </Switch>
                         </CSSTransition>
                     </TransitionGroup>
@@ -52,6 +56,5 @@ class Layout extends Component
 }
 
 export default withRouter(connect((store) => {
-    return {
-    }
+    return {}
 })(Layout));

@@ -42,7 +42,7 @@ export default class RecipesListPage extends Component
                         <strong>Recipes</strong>
                     </div>
                     <div className='col s3 right-align'>
-                        <Link className='white-text btn-control' to={'/'}><i className='material-icons small'>settings</i></Link>
+                        <Link className='white-text btn-control' to={'/settings'}><i className='material-icons small'>settings</i></Link>
                     </div>
                 </div>
 
