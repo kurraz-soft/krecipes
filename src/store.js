@@ -1,6 +1,6 @@
 import {createStore, applyMiddleware, compose} from 'redux';
 import reducers from './reducers'
-import { createLogger } from 'redux-logger'
+//import { createLogger } from 'redux-logger'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -11,7 +11,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const localState = localStorage.reduxState ? JSON.parse(localStorage.reduxState) : {};
 
-const store = createStore(reducers(), localState, composeEnhancers(applyMiddleware(createLogger())));
+//const store = createStore(reducers(), localState, composeEnhancers(applyMiddleware(createLogger())));
+const store = createStore(reducers(), localState);
 
 store.subscribe(() => {
     localStorage.reduxState = JSON.stringify(store.getState());

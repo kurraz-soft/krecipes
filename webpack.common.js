@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
     entry: [
+        "babel-polyfill",
         './src/app.js',
         './sass/style.sass'
     ],

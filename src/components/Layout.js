@@ -26,7 +26,7 @@ class Layout extends Component
                         <CSSTransition
                             key={this.props.history.location.pathname}
                             classNames='fade'
-                            timeout={1000}
+                            timeout={700}
                             appear={true}
                             exit={false}
                             /*onEnter={() => {
