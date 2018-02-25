@@ -66,9 +66,6 @@ export default class ProductsEditList extends React.Component
         return (
 
             <div>
-                <div className='row'>
-                    <Link className="btn col s12" to={'/addProduct/' + this.props.recipeId}>Add Item</Link>
-                </div>
                 <div className="row center-align flow-text" style={{fontWeight: "bold", fontSize:"small"}}>
                     <div className="col s5">Name</div>
                     <div className="col s2">Quantity</div>
@@ -92,4 +89,11 @@ ProductsEditList.propTypes = {
     products: PropTypes.array,
     recipeId: PropTypes.string,
     onDelete: PropTypes.func,
+    onClickAddItem: PropTypes.func,
+};
+
+ProductsEditList.defaultProps = {
+    products: [],
+    onDelete: (id) => {},
+    onClickAddItem: () => {},
 };

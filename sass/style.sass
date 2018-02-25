@@ -18,8 +18,19 @@ i.little
   padding: 15px 5px 15px
   position: relative
 
-.card-panel-header.card-panel-header-collapsed
-  //
+.card-panel-header-wrapper
+  overflow: hidden
+  transition: height 0.4s
+  margin-left: -.75rem
+  margin-right: -.75rem
+  margin-top: -0.5rem
+  padding-left: 5px
+  padding-right: 5px
+  will-change: height
+
+
+.card-panel-header-wrapper.card-panel-header-wrapper-collapsed
+  height: 0 !important
 
 .card-panel-header .btn-back
   position: absolute

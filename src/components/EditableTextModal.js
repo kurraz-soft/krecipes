@@ -52,7 +52,10 @@ export default class EditableTextModal extends React.Component
                 <MaterializeModal ref={modal => this.modal = modal} onOverlayClick={this.handleEditCancel.bind(this)}>
                     <form onSubmit={this.handleEditSubmit.bind(this)}>
                         <div className="modal-content">
-                            <input type='text' defaultValue={this.props.text} ref={(input) => this.input = input} />
+                            <div className='input-field'>
+                                <input type='text' defaultValue={this.props.text} ref={(input) => this.input = input} />
+                                <label>Name</label>
+                            </div>
                         </div>
                         <div className="modal-footer">
                             <button type='button' onClick={this.handleEditCancel.bind(this)} className="modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>

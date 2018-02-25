@@ -53,6 +53,8 @@ export default function (state = {
             };
         case 'CREATE_PRODUCT':
         {
+            if(action.name.length === 0) return state;
+
             const recipes = state.recipes.map((item) => {
                 return item.id === action.recipe_id?{
                     ...item,
@@ -169,6 +171,10 @@ export default function (state = {
                 ...state,
                 recipes: recipes,
             };
+        }
+        case 'TOGGLE_ADD_ITEM_MODE':
+        {
+            return state;
         }
         default:
             return state;

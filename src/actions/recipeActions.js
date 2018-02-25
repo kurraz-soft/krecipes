@@ -61,3 +61,9 @@ export function setRecipeProductActivity(recipe_id, product_id,is_active) {
         is_active: is_active,
     }
 }
+
+export function toggleAddItemMode() {
+    return {
+        type: 'TOGGLE_ADD_ITEM_MODE',
+    }
+}
