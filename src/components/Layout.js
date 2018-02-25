@@ -5,7 +5,6 @@ import 'materialize-css'
 import RecipesListPage from "../pages/RecipesListPage";
 import { loadLocalData } from "../actions/recipeActions";
 import EditRecipePage from "../pages/EditRecipePage";
-import AddProductPage from "../pages/AddProductPage";
 import ViewRecipePage from "../pages/ViewRecipePage";
 
 class Layout extends Component
@@ -30,9 +29,6 @@ class Layout extends Component
                         )} />
                         <Route exact path='/viewRecipe/:id' render={(props) => (
                             <ViewRecipePage {...props} />
-                        )} />
-                        <Route exact path='/addProduct/:recipe_id' render={props => (
-                            <AddProductPage {...props} />
                         )} />
                     </Switch>
                 </div>
