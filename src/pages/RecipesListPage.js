@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import RecipesList from "../components/RecipesList";
 import { connect } from 'react-redux';
-import { deleteRecipe } from "../actions/recipeActions";
+import { deleteRecipe, createRecipe } from "../actions/recipeActions";
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
+import shortid from 'shortid';
 
 @connect((store) => {
     return {
@@ -17,6 +18,13 @@ export default class RecipesListPage extends Component
         super();
 
         this.deleteRecipe = this.deleteRecipe.bind(this);
+    }
+
+    createRecipe()
+    {
+        const id = shortid.generate();
+        this.props.dispatch(createRecipe(id,'New Recipe'));
+        this.props.history.push('/editRecipe/' + id);
     }
 
     deleteRecipe(id) {
@@ -38,7 +46,7 @@ export default class RecipesListPage extends Component
                     </div>
                 </div>
 
-                <RecipesList recipes={this.props.recipes} deleteRecipe={this.deleteRecipe} createRecipe={this.props.createRecipe} />
+                <RecipesList recipes={this.props.recipes} deleteRecipe={this.deleteRecipe} createRecipe={this.createRecipe.bind(this)} />
             </div>
         );
     }
