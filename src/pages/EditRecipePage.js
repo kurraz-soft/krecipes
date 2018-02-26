@@ -84,7 +84,8 @@ export default class EditRecipePage extends Component
         }
 
         //TODO fix mess with repeated code & functions
-        this.handleAddItemClear(e);
+        //this.handleAddItemClear(e);
+        this.addProductButton.handleClear(e); //TODO How to get rid of refs??
     }
 
     handleAddItemDone(e)
@@ -110,7 +111,7 @@ export default class EditRecipePage extends Component
         if(this.state.new_item_name.length > 0)
         {
             list =
-                <ul>
+                <ul style={{margin: '5px'}}>
                     <AutocompleteVariants
                         variants={this.props.products.map(item => {
                             return item.name;
@@ -146,7 +147,7 @@ export default class EditRecipePage extends Component
                         </div>
                     </div>
                 </div>
-                <div className='row' style={{marginTop: '14px'}}>
+                <div className='row' style={{marginTop: '1px'}}>
                     <AddProductButton
                         inputModeEnabled={this.state.is_add_item_mode}
                         onChange={this.handleAddItemInputChange.bind(this)}
@@ -155,19 +156,31 @@ export default class EditRecipePage extends Component
                         onClear={this.handleAddItemClear.bind(this)}
                         onDone={this.handleAddItemDone.bind(this)}
                         value={this.state.new_item_name}
+                        ref={(obj) => this.addProductButton = obj}
                     />
                 </div>
 
                 {list}
 
-                <div className="fixed-action-btn">
+                <div className={"fixed-action-btn " + (this.state.is_add_item_mode?'left':'')}>
                     <button
                         onClick={this.handleSwitchAddItemMode.bind(this)}
                         className="btn-floating btn-large waves-effect waves-light red"
                     >
-                        <i className="material-icons">{this.state.is_add_item_mode?'remove':'add'}</i>
+                        <i className="material-icons">{this.state.is_add_item_mode?'close':'add'}</i>
                     </button>
                 </div>
+
+                {this.state.is_add_item_mode &&
+                    <div className="fixed-action-btn">
+                        <button
+                            onClick={this.handleAddItemSubmit.bind(this)}
+                            className="btn-floating btn-large waves-effect waves-light red"
+                        >
+                            <i className="material-icons">check</i>
+                        </button>
+                    </div>
+                }
 
             </div>
         );
