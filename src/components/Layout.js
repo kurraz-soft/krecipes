@@ -21,7 +21,7 @@ class Layout extends Component
     render() {
         return (
             <div className="layout">
-                <div className="container">
+                <div className="">
                    <TransitionGroup>
                         <CSSTransition
                             key={this.props.history.location.pathname}

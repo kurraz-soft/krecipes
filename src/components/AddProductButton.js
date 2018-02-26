@@ -45,7 +45,7 @@ export default class AddProductButton extends React.Component
                             {clearBtn}
                             <label style={{marginLeft: 0}}>Product Name</label>
                         </div>
-                        <div className='col s2' style={{lineHeight: '63px'}}>
+                        <div className='col s2 flow-text' style={{lineHeight: '63px'}}>
                             <a href='#' onClick={this.props.onDone}>Done</a>
                         </div>
                     </form>

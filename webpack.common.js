@@ -3,14 +3,16 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-    entry: [
-        "babel-polyfill",
-        './src/app.js',
-        './sass/style.sass'
-    ],
+    entry: {
+        polyfill: "babel-polyfill",
+        app: './src/app.js',
+        sw: './src/sw.js',
+        style: './sass/style.sass'
+    },
     output: {
         path: path.resolve(__dirname, 'public'),
-        filename: '[name].bundle.js'
+        filename: '[name].bundle.js',
+        publicPath: "",
     },
     module: {
         rules: [
@@ -34,7 +36,7 @@ const config = {
                         {
                             loader: 'css-loader',
                             options: {
-                                minimize: true,
+                                minimize: false,
                             },
                         },
                         {
@@ -46,14 +48,14 @@ const config = {
                     ],
                 })
             },
-            /*{
-                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
-                use: 'url-loader?name=/fonts/[name].[ext]'
-            }*/
             {
-                test: /\.(eot|svg|ttf|woff|woff2)$/,
-                loader: 'file-loader',
+                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+                use: 'url-loader?limit=1024&name=/fonts/[name].[ext]'
             }
+            /*{
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                loader: 'file-loader?limit=1024&name=/fonts/[name].[ext]',
+            }*/
         ]
     },
     plugins: [
