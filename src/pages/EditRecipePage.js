@@ -160,6 +160,15 @@ export default class EditRecipePage extends Component
 
                 {list}
 
+                <div className="fixed-action-btn">
+                    <button
+                        onClick={this.handleSwitchAddItemMode.bind(this)}
+                        className="btn-floating btn-large waves-effect waves-light red"
+                    >
+                        <i className="material-icons">{this.state.is_add_item_mode?'remove':'add'}</i>
+                    </button>
+                </div>
+
             </div>
         );
     }

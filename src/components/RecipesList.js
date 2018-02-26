@@ -24,6 +24,15 @@ export default class RecipesList extends Component
                 <div>
                     {recipes}
                 </div>
+
+                <div className="fixed-action-btn">
+                    <button
+                        onClick={this.props.createRecipe}
+                        className="btn-floating btn-large waves-effect waves-light red"
+                    >
+                        <i className="material-icons">{'add'}</i>
+                    </button>
+                </div>
             </div>
         );
     }
