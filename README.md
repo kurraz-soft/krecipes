@@ -1,4 +1,4 @@
-##KRecipes
+# KRecipes
 *Progressive Web App (serverless with optional server sync)*
 
 About
