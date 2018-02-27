@@ -3,3 +3,5 @@ package-lock.json
 .idea
 public/
 !public/.gitignore
+!public/favicon/
+!public/manifest.json
