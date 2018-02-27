@@ -1,6 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const process = require('process');
 
 const config = {
     entry: {
@@ -19,7 +20,16 @@ const config = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: 'babel-loader'
+                use: [
+                    'babel-loader',
+                    {
+                        loader: 'ifdef-loader',
+                        options: {
+                            PRODUCTION: process.env.NODE_ENV === 'production',
+                            version: 3,
+                        },
+                    },
+                ]
             },
             {
                 test: /\.css/,
@@ -36,7 +46,7 @@ const config = {
                         {
                             loader: 'css-loader',
                             options: {
-                                minimize: false,
+                                minimize: true,
                             },
                         },
                         {

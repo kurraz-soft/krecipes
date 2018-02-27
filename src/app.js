@@ -5,15 +5,16 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { HashRouter } from 'react-router-dom'
 
-window.addEventListener("pageshow", function(evt){
+window.addEventListener("pageshow", function(){
     if(localStorage.getItem('href') !== window.location.href)
         window.location.href = localStorage.getItem('href')?localStorage.getItem('href'):'/#/';
 });
 
-window.addEventListener("hashchange", function(evt){
+window.addEventListener("hashchange", function(){
     localStorage.href = window.location.href;
 });
 
+/// #if PRODUCTION
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('/sw.bundle.js').then(function(registration) {
@@ -25,6 +26,7 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
+/// #endif
 
 const mountNode = document.getElementById("app");
 ReactDOM.render(
