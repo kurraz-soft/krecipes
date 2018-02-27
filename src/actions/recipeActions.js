@@ -9,14 +9,14 @@ export function editNameRecipe(id, name) {
     return {
         type: 'EDIT_NAME_RECIPE',
         id: id,
-        name: name,
+        name: name.trim(),
     }
 }
 
 export function createRecipe(id, name) {
     return {
         type: 'CREATE_RECIPE',
-        name: name,
+        name: name.trim(),
         id: id,
     }
 }
@@ -47,7 +47,7 @@ export function saveRecipeProducts(id, products) {
 export function setDefaultProductPrice(name, recipe_id, price) {
     return {
         type: 'SET_DEFAULT_PRODUCT_PRICE',
-        name: name,
+        name: name.trim(),
         recipe_id: recipe_id,
         price: price,
     }
@@ -62,8 +62,9 @@ export function setRecipeProductActivity(recipe_id, product_id,is_active) {
     }
 }
 
+/*
 export function toggleAddItemMode() {
     return {
         type: 'TOGGLE_ADD_ITEM_MODE',
     }
-}
+}*/

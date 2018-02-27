@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {editNameRecipe, saveRecipeProducts, setDefaultProductPrice, toggleAddItemMode} from "../actions/recipeActions";
+import {editNameRecipe, saveRecipeProducts, setDefaultProductPrice} from "../actions/recipeActions";
 import {createProduct, deleteProduct} from "../actions/productActions";
 import ProductsEditList from "../components/ProductsEditList";
 import {Link} from 'react-router-dom'
@@ -111,7 +111,7 @@ export default class EditRecipePage extends Component
         if(this.state.new_item_name.length > 0)
         {
             list =
-                <ul style={{margin: '5px'}}>
+                <div className='flow-text' style={{margin: '15px'}}>
                     <AutocompleteVariants
                         variants={this.props.products.map(item => {
                             return item.name;
@@ -119,7 +119,7 @@ export default class EditRecipePage extends Component
                         onSelectResult={this.handleAddItemVariantSelect.bind(this)}
                         search={this.state.new_item_name}
                     />
-                </ul>
+                </div>
         }else
             list = <ProductsEditList
                     recipeId={current_recipe.id}
@@ -137,7 +137,7 @@ export default class EditRecipePage extends Component
                         </div>
                         <div className='col s6 center-align card-panel-header-title'>
                             <strong>
-                                <EditableTextModal text={ current_recipe.name } onChange={ this.handleChangeName.bind(this) }/>
+                                <EditableTextModal label={'Recipe title'} text={ current_recipe.name } onChange={ this.handleChangeName.bind(this) }/>
                             </strong>
                         </div>
                         <div className='col s3 right-align'>

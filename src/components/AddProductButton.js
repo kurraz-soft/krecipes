@@ -43,7 +43,7 @@ export default class AddProductButton extends React.Component
                                 ref={(input) => this.input = input}
                             />
                             {clearBtn}
-                            <label style={{marginLeft: 0}}>Product Name</label>
+                            <label style={{marginLeft: 0}}>Product</label>
                         </div>
                         <div className='col s2 flow-text' style={{lineHeight: '63px'}}>
                             <a href='#' onClick={this.props.onDone}>Done</a>

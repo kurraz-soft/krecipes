@@ -1,16 +1,8 @@
 export function createProduct(recipe_id, name) {
     return {
         type: 'CREATE_PRODUCT',
-        name: name,
+        name: name.trim(),
         recipe_id: recipe_id,
-    };
-}
-
-export function changeProductName(id, name) {
-    return {
-        type: 'CHANGE_NAME_PRODUCT',
-        id: id,
-        name: name,
     };
 }
 

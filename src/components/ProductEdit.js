@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import EditableText from "./EditableText";
 import EditableTextModal from "./EditableTextModal";
 
 export default class ProductEdit extends React.Component
@@ -39,17 +38,12 @@ export default class ProductEdit extends React.Component
         })
     }
 
-    /*handleFocus(e)
-    {
-        e.target.select();
-    }*/
-
     render()
     {
         return (
             <div className="row">
                 <div className="col s5">
-                    <EditableTextModal text={this.state.name} onChange={this.handleChangeName.bind(this)} />
+                    <EditableTextModal label={'Product'} text={this.state.name} onChange={this.handleChangeName.bind(this)} />
                 </div>
                 <div className="col s2">
                     <input

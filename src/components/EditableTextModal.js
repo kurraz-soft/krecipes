@@ -20,6 +20,7 @@ export default class EditableTextModal extends React.Component
     openModal()
     {
         this.modal.open();
+        this.fakeInput.focus();
         setTimeout(() => {
             this.input.focus();
             this.moveCaretAtEnd(this.input);
@@ -30,7 +31,7 @@ export default class EditableTextModal extends React.Component
     {
         e.preventDefault();
         this.closeModal();
-        this.props.onChange(this.input.value);
+        this.props.onChange(this.input.value = this.input.value.trim());
     }
 
     handleEditCancel()
@@ -54,7 +55,7 @@ export default class EditableTextModal extends React.Component
                         <div className="modal-content">
                             <div className='input-field'>
                                 <input type='text' defaultValue={this.props.text} ref={(input) => this.input = input} />
-                                <label>Name</label>
+                                <label>{this.props.label}</label>
                             </div>
                         </div>
                         <div className="modal-footer">
@@ -65,8 +66,9 @@ export default class EditableTextModal extends React.Component
                 </MaterializeModal>
                 <div>
                     { this.props.text }
+                    <input type='text' style={{position: 'absolute', height: 0, width: '100px', opacity: 0}} ref={(input) => this.fakeInput = input}/>
                     &nbsp;
-                    <a href="#" onClick={ (e) => {e.preventDefault(); this.openModal();} }>
+                    <a href="#" onClick={ (e) => {e.preventDefault(); this.openModal(e);} }>
                         <i className="material-icons">edit</i>
                     </a>
                 </div>
@@ -76,6 +78,7 @@ export default class EditableTextModal extends React.Component
 }
 
 EditableTextModal.propTypes = {
+    label: PropTypes.string,
     text: PropTypes.string,
     onChange: PropTypes.func,
 };
