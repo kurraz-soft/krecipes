@@ -9,7 +9,7 @@ Commands
 -----
 ``npm start`` - run dev server
 
-``npm run-script`` - build production
+``npm run-script build`` - build production
 
 Demo
 ----
