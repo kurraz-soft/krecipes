@@ -1,8 +1,51 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import localforage from 'localforage'
 
 export default class SettingsPage extends React.Component
 {
+    constructor()
+    {
+        super();
+
+        this.state = {
+            server_url: '',
+            server_token: '',
+        };
+    }
+
+    componentDidMount()
+    {
+        localforage.getItem('ServerUrl').then(value => {
+            if(value)
+                this.setState({server_url: value});
+        });
+        localforage.getItem('ServerToken').then(value => {
+            if(value)
+                this.setState({server_token: value});
+        });
+        setTimeout(() => {
+            if(this.inputUrl)
+                this.inputUrl.dispatchEvent(new Event('change', { 'bubbles': true }));
+            if(this.inputToken)
+                this.inputToken.dispatchEvent(new Event('change', { 'bubbles': true }));
+        },200);
+    }
+
+    handleServerUrlChange(e)
+    {
+        const val = e.target.value.trim();
+        this.setState({server_url: val});
+        localforage.setItem('ServerUrl', val);
+    }
+
+    handleServerPasswordChange(e)
+    {
+        const val = e.target.value.trim();
+        this.setState({server_token: val});
+        localforage.setItem('ServerToken', val);
+    }
+
     render(){
         return (
             <div>
@@ -18,8 +61,31 @@ export default class SettingsPage extends React.Component
                     </div>
                 </div>
 
-                <div className='center-align'>
-                    <i>Coming soon...</i>
+                <div>
+                    <div className='card-panel'>
+                        <h4 className='center-align'>Sync Server</h4>
+                        <br />
+                        <form>
+                            <div className='input-field'>
+                                <input
+                                    type='text'
+                                    value={this.state.server_url}
+                                    onChange={this.handleServerUrlChange.bind(this)}
+                                    ref={(input) => this.inputUrl = input}
+                                />
+                                <label>Url</label>
+                            </div>
+                            <div className='input-field'>
+                                <input
+                                    type='text'
+                                    value={this.state.server_token}
+                                    onChange={this.handleServerPasswordChange.bind(this)}
+                                    ref={(input) => this.inputToken = input}
+                                />
+                                <label>Token</label>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         );

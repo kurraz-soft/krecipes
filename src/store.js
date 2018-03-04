@@ -12,7 +12,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const localState = localStorage.reduxState ? JSON.parse(localStorage.reduxState) : {};
 
 //const store = createStore(reducers(), localState, composeEnhancers(applyMiddleware(createLogger())));
-const store = createStore(reducers(), localState);
+const store = createStore(reducers(), localState, composeEnhancers());
 
 store.subscribe(() => {
     localStorage.reduxState = JSON.stringify(store.getState());

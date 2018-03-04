@@ -5,6 +5,7 @@ import { deleteRecipe, createRecipe } from "../actions/recipeActions";
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
 import shortid from 'shortid';
+import SyncButton from "../components/SyncButton";
 
 @connect((store) => {
     return {
@@ -36,7 +37,7 @@ export default class RecipesListPage extends Component
             <div>
                 <div className='row card-panel deep-orange darken-1 white-text card-panel-header'>
                     <div className='col s3'>
-
+                        <SyncButton/>
                     </div>
                     <div className='col s6 center-align flow-text'>
                         <strong>Recipes</strong>

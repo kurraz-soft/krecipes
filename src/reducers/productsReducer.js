@@ -60,6 +60,13 @@ export default function (state = {
                 products: products,
             };
         }
+        case 'DOWNLOAD_FROM_SERVER':
+        {
+            return {
+                ...state,
+                products: action.data.products,
+            }
+        }
         default:
             return state;
     }

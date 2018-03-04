@@ -176,6 +176,13 @@ export default function (state = {
         {
             return state;
         }
+        case 'DOWNLOAD_FROM_SERVER':
+        {
+            return {
+                ...state,
+                recipes: action.data.recipes,
+            }
+        }
         default:
             return state;
     }
