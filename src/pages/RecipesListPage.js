@@ -35,19 +35,23 @@ export default class RecipesListPage extends Component
     render() {
         return (
             <div>
-                <div className='row card-panel deep-orange darken-1 white-text card-panel-header'>
-                    <div className='col s3'>
-                        <SyncButton/>
-                    </div>
-                    <div className='col s6 center-align flow-text'>
-                        <strong>Recipes</strong>
-                    </div>
-                    <div className='col s3 right-align'>
-                        <Link className='white-text btn-control' to={'/settings'}><i className='material-icons small'>settings</i></Link>
+                <div className='card-panel-header-block'>
+                    <div className='row card-panel deep-orange darken-1 white-text card-panel-header'>
+                        <div className='col s3'>
+                            <SyncButton/>
+                        </div>
+                        <div className='col s6 center-align flow-text'>
+                            <strong>Recipes</strong>
+                        </div>
+                        <div className='col s3 right-align'>
+                            <Link className='white-text btn-control' to={'/settings'}><i className='material-icons small'>settings</i></Link>
+                        </div>
                     </div>
                 </div>
 
-                <RecipesList recipes={this.props.recipes} deleteRecipe={this.deleteRecipe} createRecipe={this.createRecipe.bind(this)} />
+                <div className='content-wrapper'>
+                    <RecipesList recipes={this.props.recipes} deleteRecipe={this.deleteRecipe} createRecipe={this.createRecipe.bind(this)} />
+                </div>
             </div>
         );
     }

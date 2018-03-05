@@ -65,36 +65,40 @@ export default class ViewRecipePage extends Component
 
         return (
             <div>
-                <div className='row card-panel deep-orange darken-1 white-text card-panel-header'>
-                    <div className='col s3'>
-                        <Link className='white-text btn-back' to={'/'}><i className='material-icons medium'>navigate_before</i></Link>
-                    </div>
-                    <div className='col s6 center-align card-panel-header-title'>
-                        <strong>{this.current_recipe.name}</strong>
-                    </div>
-                    <div className='col s3 right-align'>
-                        <Link className='white-text btn-control' to={'/editRecipe/' + this.current_recipe.id}><i className='material-icons small'>edit</i></Link>
+                <div className='card-panel-header-block'>
+                    <div className='row card-panel deep-orange darken-1 white-text card-panel-header'>
+                        <div className='col s2'>
+                            <Link className='white-text btn-back' to={'/'}><i className='material-icons medium'>navigate_before</i></Link>
+                        </div>
+                        <div className='col s8 center-align card-panel-header-title'>
+                            <strong>{this.current_recipe.name}</strong>
+                        </div>
+                        <div className='col s2 right-align'>
+                            <Link className='white-text btn-control' to={'/editRecipe/' + this.current_recipe.id}><i className='material-icons small'>edit</i></Link>
+                        </div>
                     </div>
                 </div>
 
-                <br />
-                <div className="row center-align" style={{fontWeight: "bold"}}>
-                    <div className="col s5">Name</div>
-                    <div className="col s2">Quantity</div>
-                    <div className="col s2">Price</div>
-                    <div className="col s2">Sum</div>
-                    <div className="col s1" />
-                </div>
-                <hr />
-                {products}
-                <hr />
-                <div className="row" style={{fontWeight: 'bold'}}>
-                    <div className="col s10 right-align">Total</div>
-                    <div className="col s1 right-align">{this.state.price_total.toFixed(2)}</div>
-                </div>
-                <div className="row" style={{fontWeight: 'bold'}}>
-                    <div className="col s10 right-align">Left</div>
-                    <div className="col s1 right-align">{this.state.price_left.toFixed(2)}</div>
+                <div className='content-wrapper'>
+                    <br />
+                    <div className="row center-align" style={{fontWeight: "bold"}}>
+                        <div className="col s5">Name</div>
+                        <div className="col s2">Quantity</div>
+                        <div className="col s2">Price</div>
+                        <div className="col s2">Sum</div>
+                        <div className="col s1" />
+                    </div>
+                    <hr />
+                    {products}
+                    <hr />
+                    <div className="row" style={{fontWeight: 'bold'}}>
+                        <div className="col s10 right-align">Total</div>
+                        <div className="col s1 right-align">{this.state.price_total.toFixed(2)}</div>
+                    </div>
+                    <div className="row" style={{fontWeight: 'bold'}}>
+                        <div className="col s10 right-align">Left</div>
+                        <div className="col s1 right-align">{this.state.price_left.toFixed(2)}</div>
+                    </div>
                 </div>
             </div>
         );

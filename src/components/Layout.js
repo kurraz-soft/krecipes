@@ -18,6 +18,24 @@ class Layout extends Component
         props.dispatch(loadLocalData(this.props.history));
     }
 
+    adjustContentMarginTop()
+    {
+        $(() => {
+            const height = $('.card-panel-header-block').height();
+            $('.content-wrapper').css({marginTop: height + 'px'});
+        });
+    }
+
+    componentDidMount()
+    {
+        this.adjustContentMarginTop();
+    }
+
+    componentDidUpdate()
+    {
+        this.adjustContentMarginTop();
+    }
+
     render() {
         return (
             <div className="layout">

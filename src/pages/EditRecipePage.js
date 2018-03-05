@@ -130,37 +130,41 @@ export default class EditRecipePage extends Component
 
         return (
             <div>
-                <div className={'card-panel-header-wrapper' + (this.state.is_add_item_mode?' card-panel-header-wrapper-collapsed':'')} ref={wrapper => this.headerWrapper = wrapper}>
-                    <div className={'row card-panel deep-orange darken-1 white-text card-panel-header'} style={{marginBottom: 0}}>
-                        <div className='col s3'>
-                            <Link title='Cancel' className='white-text btn-back' to={'/'}><i className='material-icons medium'>navigate_before</i></Link>
-                        </div>
-                        <div className='col s6 center-align card-panel-header-title'>
-                            <strong>
-                                <EditableTextModal label={'Recipe title'} text={ current_recipe.name } onChange={ this.handleChangeName.bind(this) }/>
-                            </strong>
-                        </div>
-                        <div className='col s3 right-align'>
-                            <Link title='Save' className='white-text btn-control' to={'/viewRecipe/' + this.current_recipe.id} onClick={this.handleSave.bind(this)}>
-                                <i className='material-icons small'>save</i>
-                            </Link>
+                <div className='card-panel-header-block'>
+                    <div className={'card-panel-header-wrapper' + (this.state.is_add_item_mode?' card-panel-header-wrapper-collapsed':'')} ref={wrapper => this.headerWrapper = wrapper}>
+                        <div className={'row card-panel deep-orange darken-1 white-text card-panel-header'} style={{marginBottom: 0}}>
+                            <div className='col s2'>
+                                <Link title='Cancel' className='white-text btn-back' to={'/'}><i className='material-icons medium'>navigate_before</i></Link>
+                            </div>
+                            <div className='col s8 center-align card-panel-header-title'>
+                                <strong>
+                                    <EditableTextModal label={'Recipe title'} text={ current_recipe.name } onChange={ this.handleChangeName.bind(this) }/>
+                                </strong>
+                            </div>
+                            <div className='col s2 right-align'>
+                                <Link title='Save' className='white-text btn-control' to={'/viewRecipe/' + this.current_recipe.id} onClick={this.handleSave.bind(this)}>
+                                    <i className='material-icons small'>save</i>
+                                </Link>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className='row' style={{marginTop: '1px'}}>
-                    <AddProductButton
-                        inputModeEnabled={this.state.is_add_item_mode}
-                        onChange={this.handleAddItemInputChange.bind(this)}
-                        onSwitchMode={this.handleSwitchAddItemMode.bind(this)}
-                        onSubmit={this.handleAddItemSubmit.bind(this)}
-                        onClear={this.handleAddItemClear.bind(this)}
-                        onDone={this.handleAddItemDone.bind(this)}
-                        value={this.state.new_item_name}
-                        ref={(obj) => this.addProductButton = obj}
-                    />
+                    <div className='row' style={{marginTop: '1px'}}>
+                        <AddProductButton
+                            inputModeEnabled={this.state.is_add_item_mode}
+                            onChange={this.handleAddItemInputChange.bind(this)}
+                            onSwitchMode={this.handleSwitchAddItemMode.bind(this)}
+                            onSubmit={this.handleAddItemSubmit.bind(this)}
+                            onClear={this.handleAddItemClear.bind(this)}
+                            onDone={this.handleAddItemDone.bind(this)}
+                            value={this.state.new_item_name}
+                            ref={(obj) => this.addProductButton = obj}
+                        />
+                    </div>
                 </div>
 
+                <div className='content-wrapper'>
                 {list}
+                </div>
 
                 <div className={"fixed-action-btn " + (this.state.is_add_item_mode?'left':'')}>
                     <button
