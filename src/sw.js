@@ -1,4 +1,4 @@
-const CACHE_NAME = 'krecipes-cache-v1';
+const CACHE_NAME = 'krecipes-cache-v2';
 const urlsToCache = [
     '/#/',
     '/polyfill.bundle.js',
@@ -19,7 +19,10 @@ const urlsToCache = [
 ];
 
 self.addEventListener('install', function(event) {
+    console.log('install attempt');
   // Perform install steps
+    if(typeof caches === 'undefined') return;
+    console.log('install success');
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(function(cache) {
@@ -30,7 +33,14 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-    console.log('fetch');
+
+    if(typeof caches === 'undefined')
+    {
+        event.respondWith(
+            fetch(event.request)
+        );
+        return;
+    }
 
     event.respondWith(
         caches.match(event.request)

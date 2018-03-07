@@ -22,13 +22,13 @@ const config = {
                 exclude: /node_modules/,
                 use: [
                     'babel-loader',
-                    {
+                    /*{
                         loader: 'ifdef-loader',
                         options: {
                             PRODUCTION: process.env.NODE_ENV === 'production',
                             version: 3,
                         },
-                    },
+                    },*/
                 ]
             },
             {

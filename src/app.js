@@ -14,7 +14,6 @@ window.addEventListener("hashchange", function(){
     localStorage.href = window.location.href;
 });
 
-/// #if PRODUCTION
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('/sw.bundle.js').then(function(registration) {
@@ -26,7 +25,6 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
-/// #endif
 
 const mountNode = document.getElementById("app");
 ReactDOM.render(
