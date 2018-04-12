@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom'
 import EditableTextModal from "../components/EditableTextModal";
 import AddProductButton from '../components/AddProductButton';
 import AutocompleteVariants from '../components/AutocompleteVariants';
+import i18next from './../i18n'
 
 @connect((store) => {
     return {
@@ -138,7 +139,7 @@ export default class EditRecipePage extends Component
                             </div>
                             <div className='col s8 center-align card-panel-header-title'>
                                 <strong>
-                                    <EditableTextModal label={'Recipe title'} text={ current_recipe.name } onChange={ this.handleChangeName.bind(this) }/>
+                                    <EditableTextModal label={i18next.t('Recipe title')} text={ current_recipe.name } onChange={ this.handleChangeName.bind(this) }/>
                                 </strong>
                             </div>
                             <div className='col s2 right-align'>

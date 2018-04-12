@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { HashRouter } from 'react-router-dom'
 
+import './i18n';
+
 window.addEventListener("pageshow", function(){
     if(localStorage.getItem('href') !== window.location.href)
         window.location.href = localStorage.getItem('href')?localStorage.getItem('href'):'/#/';

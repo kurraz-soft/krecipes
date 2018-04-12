@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
+import i18next from './../i18n'
 
 const rowStyle = {
     lineHeight: "40px",
@@ -11,7 +12,7 @@ export default class Recipe extends Component
     deleteRecord(e) {
         e.preventDefault();
 
-        if(confirm('Delete the recipe?'))
+        if(confirm(i18next.t('Delete the recipe?')))
             this.props.deleteRecipe(this.props.item.id);
     }
 

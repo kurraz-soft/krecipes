@@ -1,7 +1,8 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import ProductEdit from './ProductEdit'
 import PropTypes from 'prop-types'
+import {I18n} from 'react-i18next'
+import i18next from './../i18n'
 
 export default class ProductsEditList extends React.Component
 {
@@ -61,26 +62,32 @@ export default class ProductsEditList extends React.Component
                 />
             });
         }else
-            products = <div className='center-align'><br /><i>Empty</i><br /><br /></div>;
+            products = <div className='center-align'><br /><i>{i18next.t('Empty')}</i><br /><br /></div>;
 
         return (
 
-            <div>
-                <div className="row center-align flow-text" style={{fontWeight: "bold", fontSize:"small"}}>
-                    <div className="col s5">Name</div>
-                    <div className="col s2">Quantity</div>
-                    <div className="col s2">Price</div>
-                    <div className="col s2">Sum</div>
-                    <div className="col s1" />
-                </div>
-                <hr />
-                {products}
-                <hr />
-                <div className="row" style={{fontWeight: 'bold'}}>
-                    <div className="col s10 right-align">Total</div>
-                    <div className="col s1 right-align">{this.state.price_total.toFixed(2)}</div>
-                </div>
-            </div>
+            <I18n>
+                {
+                    (t) => (
+                        <div>
+                            <div className="row center-align flow-text" style={{fontWeight: "bold", fontSize: "small"}}>
+                                <div className="col s5">{t('Name')}</div>
+                                <div className="col s2">{t('Quantity')}</div>
+                                <div className="col s2">{t('Price')}</div>
+                                <div className="col s2">{t('Sum')}</div>
+                                <div className="col s1"/>
+                            </div>
+                            <hr/>
+                            {products}
+                            <hr/>
+                            <div className="row" style={{fontWeight: 'bold'}}>
+                                <div className="col s10 right-align">{t('Total')}</div>
+                                <div className="col s1 right-align">{this.state.price_total.toFixed(2)}</div>
+                            </div>
+                        </div>
+                    )
+                }
+            </I18n>
         );
     }
 }

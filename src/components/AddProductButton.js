@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import i18next from 'i18next'
 
 export default class AddProductButton extends React.Component
 {
@@ -43,17 +44,17 @@ export default class AddProductButton extends React.Component
                                 ref={(input) => this.input = input}
                             />
                             {clearBtn}
-                            <label style={{marginLeft: 0}}>Product</label>
+                            <label style={{marginLeft: 0}}>{i18next.t('Product')}</label>
                         </div>
                         <div className='col s2 flow-text' style={{lineHeight: '63px'}}>
-                            <a href='#' onClick={this.props.onDone}>Done</a>
+                            <a href='#' onClick={this.props.onDone}>{i18next.t('Done')}</a>
                         </div>
                     </form>
                 </div>
             )
         }else
             return (
-                <button className="btn col s12" onClick={this.props.onSwitchMode}>Add Item</button>
+                <button className="btn col s12" onClick={this.props.onSwitchMode}>{i18next.t('Add Item')}</button>
             )
     }
 }

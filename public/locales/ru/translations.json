@@ -1,0 +1,23 @@
+{
+  "Recipes": "Рецепты",
+  "Create new Recipe": "Создать новый рецепт",
+  "No recipes": "Нет рецептов",
+  "New Recipe": "Новый рецепт",
+  "Add Item": "Добавить товар",
+  "Delete the recipe?": "Удалить рецепт?",
+  "Name": "Название",
+  "Quantity": "Количество",
+  "Price": "Цена",
+  "Sum": "Сумма",
+  "Total": "Итого",
+  "Empty": "Пусто",
+  "Recipe title": "Название рецепта",
+  "Product": "Товар",
+  "Done": "Готово",
+  "Save": "Сохранить",
+  "Cancel": "Отмена",
+  "Settings": "Настройки",
+  "Sync Server": "Сервер синхронизации",
+  "Language": "Язык",
+  "Left": "Осталось"
+}

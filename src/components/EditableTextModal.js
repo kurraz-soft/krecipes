@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MaterializeModal from "./MaterializeModal";
+import i18next from './../i18n'
 
 export default class EditableTextModal extends React.Component
 {
@@ -59,8 +60,8 @@ export default class EditableTextModal extends React.Component
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button type='button' onClick={this.handleEditCancel.bind(this)} className="modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>
-                            <button type='submit' className="modal-action modal-close waves-effect waves-green btn-flat">Save</button>
+                            <button type='button' onClick={this.handleEditCancel.bind(this)} className="modal-action modal-close waves-effect waves-green btn-flat">{i18next.t('Cancel')}</button>
+                            <button type='submit' className="modal-action modal-close waves-effect waves-green btn-flat">{i18next.t('Save')}</button>
                         </div>
                     </form>
                 </MaterializeModal>

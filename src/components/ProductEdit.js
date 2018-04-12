@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import EditableTextModal from "./EditableTextModal";
+import i18next from './../i18n'
 
 export default class ProductEdit extends React.Component
 {
@@ -43,7 +44,7 @@ export default class ProductEdit extends React.Component
         return (
             <div className="row">
                 <div className="col s5">
-                    <EditableTextModal label={'Product'} text={this.state.name} onChange={this.handleChangeName.bind(this)} />
+                    <EditableTextModal label={i18next.t('Product')} text={this.state.name} onChange={this.handleChangeName.bind(this)} />
                 </div>
                 <div className="col s2">
                     <input

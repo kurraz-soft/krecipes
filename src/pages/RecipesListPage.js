@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
 import shortid from 'shortid';
 import SyncButton from "../components/SyncButton";
+import { I18n } from 'react-i18next'
+import i18next from './../i18n';
 
 @connect((store) => {
     return {
@@ -24,7 +26,7 @@ export default class RecipesListPage extends Component
     createRecipe()
     {
         const id = shortid.generate();
-        this.props.dispatch(createRecipe(id,'New Recipe'));
+        this.props.dispatch(createRecipe(id, i18next.t('New Recipe')));
         this.props.history.push('/editRecipe/' + id);
     }
 
@@ -41,7 +43,13 @@ export default class RecipesListPage extends Component
                             <SyncButton/>
                         </div>
                         <div className='col s6 center-align flow-text'>
-                            <strong>Recipes</strong>
+                            <I18n ns="translations">
+                                {
+                                    (t) => (
+                                        <strong>{t('Recipes')}</strong>
+                                    )
+                                }
+                            </I18n>
                         </div>
                         <div className='col s3 right-align'>
                             <Link className='white-text btn-control' to={'/settings'}><i className='material-icons small'>settings</i></Link>
