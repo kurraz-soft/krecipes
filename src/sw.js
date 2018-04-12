@@ -1,4 +1,4 @@
-const CACHE_NAME = 'krecipes-cache-v2';
+const CACHE_NAME = 'krecipes-cache-v3';
 const urlsToCache = [
     '/#/',
     '/polyfill.bundle.js',
@@ -16,6 +16,8 @@ const urlsToCache = [
     '/fonts/Roboto-Thin.woff',
     '/fonts/Roboto-Thin.woff2',
     'https://fonts.googleapis.com/icon?family=Material+Icons',
+    '/locales/en/translations.json',
+    '/locales/ru/translations.json',
 ];
 
 self.addEventListener('install', function(event) {
