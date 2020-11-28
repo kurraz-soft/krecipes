@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import RecipesList from "../components/RecipesList";
 import { connect } from 'react-redux';
-import { deleteRecipe, createRecipe } from "../actions/recipeActions";
+import {deleteRecipe, createRecipe, searchRecipe} from "../actions/recipeActions";
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
 import shortid from 'shortid';
@@ -12,6 +12,7 @@ import i18next from './../i18n';
 @connect((store) => {
     return {
         recipes: store.recipes.recipes,
+        search: store.recipes.search,
     };
 })
 export default class RecipesListPage extends Component
@@ -21,6 +22,7 @@ export default class RecipesListPage extends Component
         super();
 
         this.deleteRecipe = this.deleteRecipe.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
     createRecipe()
@@ -32,6 +34,28 @@ export default class RecipesListPage extends Component
 
     deleteRecipe(id) {
         this.props.dispatch(deleteRecipe(id));
+    }
+
+    handleSearch(search)
+    {
+        this.props.dispatch(searchRecipe(search));
+    }
+
+    filterRecipes(recipes)
+    {
+        let filtered = [];
+        filtered = recipes.filter((item) => {
+            return item.name.toLowerCase().includes(this.props.search.toLowerCase());
+        });
+
+        filtered.sort((x, y) => {
+            if(x.name > y.name) return 1;
+            if(x.name < y.name) return -1;
+
+            return 0;
+        })
+
+        return filtered;
     }
 
     render() {
@@ -58,7 +82,13 @@ export default class RecipesListPage extends Component
                 </div>
 
                 <div className='content-wrapper'>
-                    <RecipesList recipes={this.props.recipes} deleteRecipe={this.deleteRecipe} createRecipe={this.createRecipe.bind(this)} />
+                    <RecipesList
+                        recipes={this.filterRecipes(this.props.recipes)}
+                        deleteRecipe={this.deleteRecipe}
+                        createRecipe={this.createRecipe.bind(this)}
+                        search={this.props.search}
+                        handleSearch={this.handleSearch}
+                    />
                 </div>
             </div>
         );

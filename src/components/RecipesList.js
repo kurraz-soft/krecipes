@@ -5,6 +5,16 @@ import { I18n } from 'react-i18next'
 
 export default class RecipesList extends Component
 {
+    constructor(props) {
+        super(props);
+
+        this.handleSearch = this.handleSearch.bind(this);
+    }
+
+    handleSearch(event) {
+        this.props.handleSearch(event.target.value);
+    }
+
     render() {
 
         let recipes = <div className='center-align'>
@@ -28,11 +38,16 @@ export default class RecipesList extends Component
             <I18n ns="translations">
                 {
                     (t) => (
-                        <div>
+                        <div className="recipes-list">
                             <div className='row'>
                                 <button onClick={this.props.createRecipe} className="btn center-align col s12">
                                     {t('Create new Recipe')}
                                 </button>
+                            </div>
+                            <div className="row">
+                                <div className="input-field">
+                                    <input className="search-input" type="text" onChange={this.handleSearch} value={this.props.search} placeholder={t('Search...')}/>
+                                </div>
                             </div>
 
                             <div>
@@ -60,4 +75,6 @@ RecipesList.propTypes = {
     recipes: PropTypes.array,
     deleteRecipe: PropTypes.func,
     createRecipe: PropTypes.func,
+    search: PropTypes.string,
+    handleSearch: PropTypes.func,
 };

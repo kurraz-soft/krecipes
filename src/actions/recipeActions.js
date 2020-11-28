@@ -5,6 +5,13 @@ export function deleteRecipe(id) {
     }
 }
 
+export function searchRecipe(search) {
+    return {
+        type: 'SEARCH_RECIPE',
+        payload: search,
+    }
+}
+
 export function editNameRecipe(id, name) {
     return {
         type: 'EDIT_NAME_RECIPE',

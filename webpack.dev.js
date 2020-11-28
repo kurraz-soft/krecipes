@@ -8,7 +8,7 @@ module.exports = merge(common, {
         compress: true,
         port: 9000,
         overlay: true,
-        host: "192.168.0.103",
+        host: "localhost",
     },
     devtool: 'inline-source-map',
 });

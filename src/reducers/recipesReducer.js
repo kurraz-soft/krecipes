@@ -10,10 +10,18 @@ const InitialProduct = {
 
 export default function (state = {
     recipes: [],
+    search: "",
 }, action) {
 
     switch (action.type)
     {
+        case 'SEARCH_RECIPE':
+        {
+            return {
+                ...state,
+                search: action.payload,
+            };
+        }
         case 'DELETE_RECIPE':
         {
             const recipes = state.recipes.filter((item) => {
