@@ -1,4 +1,4 @@
-const CACHE_NAME = 'krecipes-cache-v3';
+const CACHE_NAME = 'krecipes-cache-' + __BUILD_HASH__;
 const urlsToCache = [
     '/#/',
     '/polyfill.bundle.js',
@@ -20,40 +20,59 @@ const urlsToCache = [
     '/locales/ru/translations.json',
 ];
 
+// Activate new SW immediately, don't wait for tabs to close
 self.addEventListener('install', function(event) {
-    console.log('install attempt');
-  // Perform install steps
     if(typeof caches === 'undefined') return;
-    console.log('install success');
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(function(cache) {
-                console.log('Opened cache');
                 return cache.addAll(urlsToCache);
             })
-        );
+            .then(function() {
+                return self.skipWaiting();
+            })
+    );
 });
 
-self.addEventListener('fetch', function(event) {
+// Delete old caches when new SW activates
+self.addEventListener('activate', function(event) {
+    event.waitUntil(
+        caches.keys().then(function(cacheNames) {
+            return Promise.all(
+                cacheNames
+                    .filter(function(name) { return name !== CACHE_NAME; })
+                    .map(function(name) { return caches.delete(name); })
+            );
+        }).then(function() {
+            return self.clients.claim();
+        })
+    );
+});
 
-    if(typeof caches === 'undefined')
-    {
-        event.respondWith(
-            fetch(event.request)
-        );
+// Network-first strategy: try server, fall back to cache
+self.addEventListener('fetch', function(event) {
+    if(typeof caches === 'undefined') {
+        event.respondWith(fetch(event.request));
         return;
     }
 
     event.respondWith(
-        caches.match(event.request)
+        fetch(event.request)
             .then(function(response) {
-                // Cache hit - return response
-
-                if (response) {
-                    console.log('return cached response');
-                    return response;
+                // Only cache GET requests (cache.put() throws for other methods)
+                if(response.ok && event.request.method === 'GET') {
+                    const responseClone = response.clone();
+                    caches.open(CACHE_NAME).then(function(cache) {
+                        cache.put(event.request, responseClone);
+                    }).catch(function(err) {
+                        console.warn('Failed to update cache:', err);
+                    });
                 }
-                return fetch(event.request);
+                return response;
+            })
+            .catch(function() {
+                // Network failed, fall back to cache (offline support)
+                return caches.match(event.request);
             })
     );
 });
