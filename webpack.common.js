@@ -53,7 +53,10 @@ const config = {
                         {
                             loader: 'sass-loader',
                             options: {
+                                implementation: require('sass'),
                                 includePaths: [path.resolve(__dirname, 'node_modules')],
+                                quietDeps: true,
+                                silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin'],
                             }
                         }
                     ],
