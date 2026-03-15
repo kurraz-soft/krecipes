@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const process = require('process');
@@ -69,6 +70,9 @@ const config = {
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            '__BUILD_HASH__': JSON.stringify(Date.now().toString(36)),
+        }),
         new ExtractTextPlugin({
           filename: 'bundle.css'
         }),

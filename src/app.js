@@ -19,10 +19,22 @@ window.addEventListener("hashchange", function(){
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('/sw.bundle.js').then(function(registration) {
-      // Registration was successful
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
+
+      // Check for updates periodically
+      setInterval(function() {
+        registration.update();
+      }, 60 * 60 * 1000); // check every hour
+
+      // Reload page when new SW takes control
+      var refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', function() {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
     }, function(err) {
-      // registration failed :(
       console.log('ServiceWorker registration failed: ', err);
     });
   });
