@@ -21,12 +21,13 @@ jobs:
       - run: npm run build
 
       - name: Deploy to server
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: appleboy/scp-action@v0.1.7
         with:
-          server: ${{ secrets.SSH_HOST }}
+          host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
-          protocol: sftp
-          port: 22
-          local-dir: public/
-          server-dir: /home/web/web/list.kurraz-soft.com/public_html/
+          source: public/*
+          target: /home/web/web/list.kurraz-soft.com/public_html
+          strip_components: 1
+          overwrite: true
+          rm: true
