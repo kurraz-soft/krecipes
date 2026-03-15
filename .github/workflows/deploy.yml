@@ -30,4 +30,3 @@ jobs:
           target: /home/web/web/list.kurraz-soft.com/public_html
           strip_components: 1
           overwrite: true
-          rm: true
