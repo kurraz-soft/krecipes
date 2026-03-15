@@ -27,7 +27,7 @@ if ('serviceWorker' in navigator) {
       }, 60 * 60 * 1000); // check every hour
 
       // Reload page when new SW takes control
-      var refreshing = false;
+      let refreshing = false;
       navigator.serviceWorker.addEventListener('controllerchange', function() {
         if (!refreshing) {
           refreshing = true;

@@ -59,11 +59,13 @@ self.addEventListener('fetch', function(event) {
     event.respondWith(
         fetch(event.request)
             .then(function(response) {
-                // Update cache with fresh response
-                if(response.ok) {
-                    var responseClone = response.clone();
+                // Only cache GET requests (cache.put() throws for other methods)
+                if(response.ok && event.request.method === 'GET') {
+                    const responseClone = response.clone();
                     caches.open(CACHE_NAME).then(function(cache) {
                         cache.put(event.request, responseClone);
+                    }).catch(function(err) {
+                        console.warn('Failed to update cache:', err);
                     });
                 }
                 return response;
